@@ -33,7 +33,7 @@
               <input
                 type="password"
                 v-model="form.repeatPassword"
-                placeholder="password"
+                placeholder="repeat"
                 class="border-item"
                 autocomplete="off"
               />
