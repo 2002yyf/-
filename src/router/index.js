@@ -12,6 +12,10 @@ import Planting1 from "@/views/Planting1";
 import Planting2 from "@/views/Planting2";
 import ApplicationView from "@/views/ApplicationView";
 import AppLoginView from "@/appview/AppLoginView";
+import AppHomeView from "@/appview/AppHomeView";
+import SearchView from "@/appview/SearchView";
+import AppInfoView from "@/appview/InfoView"
+import AppRegisterView from "@/appview/AppRegisterView";
 
 const routes = [
   {
@@ -78,7 +82,25 @@ const routes = [
     path:'/FrontLogin',
     name:'FrontLogin',
     component: AppLoginView
+  },{
+    path: '/appHome',
+    name:'/appHome',
+    component: AppHomeView
+  },{
+    path: '/search',
+    name:'search',
+    component: SearchView
+  },{
+    path: '/info',
+    name:'info',
+    component: AppInfoView
+  },{
+    path: '/appRegister',
+    name: 'appRegister',
+    component: AppRegisterView
   }
+
+
 ]
 
 const router = createRouter({

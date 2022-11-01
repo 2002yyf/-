@@ -6,30 +6,25 @@
     </div>
   </div>
   <div class="body">
-    <van-cell-group inset style="margin-top: 30px">
-      <van-field v-model="username" type="number" label="用户名" @click-input="show=true" />
-      <van-field v-model="password" type="password" label="密码" @focus="show=true"  />
+    <van-cell-group inset style="margin-top: 60px">
+      <van-field v-model="username" type="text" label="用户名"  />
+      <van-field v-model="password" type="password" label="密码" />
     </van-cell-group>
-    <van-number-keyboard
-        :show="show"
-        theme="custom"
-        extra-key="."
-        close-button-text="完成"
-        @blur="show = false"
-        @input="onInput"
-        @delete="onDelete"
-        v-model="username"
-    />
-
+    <van-button type="primary" block style="margin-top: 50px" color="gray" @click="this.$router.push('/appRegister')">注册</van-button>
+    <van-button type="primary" block style="margin-top: 10px"
+                @click="login">登录</van-button>
   </div>
 
-  <div></div>
+  <div class="bottom">
+  </div>
 
 
 
 </template>
 
 <script>
+import {Toast} from "vant";
+
 export default {
   name: "AppLoginView",
   data(){
@@ -45,6 +40,9 @@ export default {
       console.log(this.username)
     },onDelete(){
     this.username = this.input
+    },login(){
+      Toast.success('登陆成功');
+      this.$router.push('/appHome');
     }
 
   }
@@ -55,12 +53,12 @@ export default {
 <style scoped>
 .header{
   width: 100vw;
-  border: 1px solid red;
-  height: 50px
+  height: 50px;
+  background-color: #52a640;
+  border-radius: 0 0 20px 20px;
 }
 .body{
   width: 100vw;
-  border: 1px solid blue;
   height: 500px;
 }
 </style>
