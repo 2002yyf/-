@@ -17,7 +17,7 @@
         <van-grid-item icon="logistics" text="上传物流证明" v-if="identity==='供应商'"/>
         <van-grid-item icon="search" text="被搜次数" v-if="identity==='供应商'"/>
         <van-grid-item icon="logistics" text="查询物流" v-if="identity==='普通用户'"/>
-
+        <van-grid-item icon="plus" text="上传生长信息" v-if="identity==='供应商'"/>
       </van-grid>
 
     </el-card>
@@ -34,8 +34,8 @@ export default {
     AppBottom
   },data(){
     return{
-      identity:'普通用户',
-      // identity:'供应商'
+      // identity:'普通用户',
+      identity:'供应商'
     }
   }
   ,methods:{
