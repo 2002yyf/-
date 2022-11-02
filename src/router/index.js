@@ -91,8 +91,8 @@ const routes = [
     name:'search',
     component: SearchView
   },{
-    path: '/info',
-    name:'info',
+    path: '/AppInfo',
+    name:'AppInfo',
     component: AppInfoView
   },{
     path: '/appRegister',

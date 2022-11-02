@@ -3,7 +3,7 @@
   <van-tabbar v-model="active" route>
     <van-tabbar-item icon="home-o" to="/appHome">首页</van-tabbar-item>
     <van-tabbar-item icon="search" to="/search">查询</van-tabbar-item>
-    <van-tabbar-item icon="friends-o" to="/info">信息</van-tabbar-item>
+    <van-tabbar-item icon="friends-o" to="/AppInfo">信息</van-tabbar-item>
   </van-tabbar>
 </template>
 
