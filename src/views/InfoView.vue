@@ -6,27 +6,29 @@
   <div style="width:100%;display: flex;">
     <Aside />
 
-    <div style="padding-top: 15px;">
-      <div>
+    <div style="width:100%;padding-top: 15px; background-color: #edf5ea; background-size:100% 100%;">
+      <div class="box">
         <el-form :inline="true" :model="formInline" class="demo-form-inline">
-          <el-form-item label="商品名称">
-            <el-input v-model="formInline.name" placeholder="商品名称"></el-input>
-          </el-form-item>
-          <el-form-item label="申请状态">
-              <el-input v-model="formInline.status" placeholder="申请状态"></el-input>
+          <el-form-item>
+            <input class="input" v-model="formInline.name" placeholder="商品名称"/>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="onSubmit">查询</el-button>
-            <el-button type="primary" @click="reSet">重置</el-button>
+            <input class="input" v-model="formInline.status" placeholder="申请状态"/>
+          </el-form-item>
+          <el-form-item>
+            <button class="btn1" @click="onSubmit">查询</button>
+            <button class="btn1" style="margin-left: 10px" @click="reSet">重置</button>
           </el-form-item>
         </el-form>
       </div>
+      <div class="table">
         <el-table
             :data="tableData"
-            style=" font-size: medium;left: 100px"
-            border
+            :header-row-style="headerRowStyle"
+            :row-style="rowState"
+            :header-cell-style="{'background':'#8c9d47',textAlign: 'center'}"
         >
-          <el-table-column label="产品编号" width="150">
+          <el-table-column label="产品编号" width="100">
             <template #default="scope">
               <div style="display: flex; align-items: center">
                 <span>{{ scope.row.id }}</span>
@@ -34,7 +36,7 @@
             </template>
           </el-table-column>
 
-          <el-table-column label="产品名称" width="150">
+          <el-table-column label="产品名称" width="200">
             <template #default="scope">
               <div style="display: flex; align-items: center">
                 <span>{{ scope.row.name }}</span>
@@ -42,60 +44,64 @@
             </template>
           </el-table-column>
 
-        <el-table-column label="状态" width="150">
-          <template #default="scope">
-            <div style="display: flex; align-items: center">
-              <span>{{ scope.row.status }}</span>
-            </div>
-          </template>
-        </el-table-column>
+          <el-table-column label="状态" width="100">
+            <template #default="scope">
+              <div style="display: flex; align-items: center">
+                <span>{{ scope.row.status }}</span>
+              </div>
+            </template>
+          </el-table-column>
 
 
-        <el-table-column label="上传单位" width="150">
-          <template #default="scope">
-            <div style="display: flex; align-items: center">
-              <span >{{ scope.row.company }}</span>
-            </div>
-          </template>
-        </el-table-column>
+          <el-table-column label="上传单位" width="230">
+            <template #default="scope">
+              <div style="display: flex; align-items: center">
+                <span >{{ scope.row.company }}</span>
+              </div>
+            </template>
+          </el-table-column>
 
 
-        <el-table-column label="地区" width="150">
-          <template #default="scope">
-            <div style="display: flex; align-items: center">
-              <span>{{ scope.row.area }}</span>
-            </div>
-          </template>
-        </el-table-column>
+          <el-table-column label="地区" width="150">
+            <template #default="scope">
+              <div style="display: flex; align-items: center">
+                <span>{{ scope.row.area }}</span>
+              </div>
+            </template>
+          </el-table-column>
 
-        <el-table-column label="生产时间" width="150">
-          <template #default="scope">
-            <div style="display: flex; align-items: center">
-              <el-icon><timer /></el-icon>
-              <span style="margin-left: 15px">{{ scope.row.createTime }}</span>
-            </div>
-          </template>
-        </el-table-column>
+          <el-table-column label="生产时间" width="230">
+            <template #default="scope">
+              <div style="display: flex; align-items: center">
+                <el-icon><timer /></el-icon>
+                <span style="margin-left: 15px">{{ scope.row.createTime }}</span>
+              </div>
+            </template>
+          </el-table-column>
+
+          <el-table-column label="上传时间" width="250">
+            <template #default="scope">
+              <div style="display: flex; align-items: center">
+                <el-icon><timer /></el-icon>
+                <span style="margin-left: 15px">{{ scope.row.updateTime }}</span>
+              </div>
+            </template>
+          </el-table-column>
 
 
-        <el-table-column label="上传时间" width="150">
-          <template #default="scope">
-            <div style="display: flex; align-items: center">
-              <span>{{ scope.row.updateTime }}</span>
-            </div>
-          </template>
-        </el-table-column>
-
-      </el-table>
-      <el-pagination
-          :current-page="page"
-          :page-size="pageSize"
-          :page-sizes="[4, 6,8]"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="total"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-      />
+        </el-table>
+      </div>
+      <div class="table">
+        <el-pagination style="color: #00b891;font-family:cursive;font-weight: bold;"
+            :current-page="page"
+            :page-size="pageSize"
+            :page-sizes="[4, 6,8]"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="total"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -124,6 +130,25 @@ export default {
     this.loadData()
   },
   methods: {
+    headerRowStyle(args){
+      return {
+        height: '50px',
+        color:'#5b5e0b',
+        fontSize:'18px',
+        fontFamily:'cursive',
+        fontWeight:'bolder',
+        background:'#e0eed1',
+      }
+    },
+    rowState(arg){
+      return {
+        color:'#6a9a49',
+        fontWeight:'bold',
+        background: '#dee7da',
+        fontFamily:'cursive',
+        fontSize:"17px",
+      }
+    },
     loadData(){
       request.get("/product/page",{
         params:{
@@ -161,104 +186,71 @@ export default {
 
 }
 </script>
-<!--<script>-->
-<!--import Aside from '@/components/Aside.vue'-->
-<!--import Top from '@/components/Top.vue'-->
-<!--import { ElMessage } from 'element-plus'-->
-<!--export default {-->
-<!--  name: 'InfoView',-->
-<!--  components: { Aside, Top },-->
-<!--  mounted() {},-->
-<!--  data() {-->
-<!--    return {-->
-<!--      multipleSelection: [],-->
-<!--      centerDialogVisible: false,-->
-<!--      form: {},-->
-<!--      total:0,-->
-<!--      pageSize4:5,-->
-<!--      options:[-->
-<!--        {-->
-<!--          value:"上线",-->
-<!--          label:"上线"-->
-<!--        },{-->
-<!--          value:"下线",-->
-<!--          label:"下线"-->
-<!--        },-->
+<style lang="scss" scoped>
+.table{
+  padding-left: 40px;
+  padding-right: 45px;
+  padding-top: 20px;
+}
+.box {
+  padding-top: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  width: 100%;
+}
+.btn {
+  width: 55px;
+  border: 2px solid #52a640;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 8px;
+  display: inline-block;
+  margin-left:10px;
+}
+.btn:hover {
+  filter: brightness(1.2);
+  color: #6a6c0f;
+}
+.input{
+  width:130px;
+  border: 2px solid #6a6c0f;
+  text-align: center;
+  line-height: 35px;
+  height: 35px;
+  border-radius: 8px;
+  display: inline-block;
+  font-weight: bold;
+  font-size:16px ;
+  font-family:cursive;
+  color:#6a6c0f;
+}
 
-<!--      ],-->
-<!--      currentPage4:1,-->
-<!--      tableData: [-->
-<!--        {-->
-<!--          name: '牛奶',-->
-<!--          status: '上线',-->
-<!--          area: '北京',-->
-<!--          plantTime: '2015-5-9',-->
-<!--          uploadTime: '2016-4-3',-->
-<!--          projectId: 'x123',-->
-<!--          company:'abc'-->
-<!--        },-->
-<!--        {-->
-<!--          name: '苹果干',-->
-<!--          status: '上线',-->
-<!--          area: '杭州',-->
-<!--          plantTime: '2013-1-15',-->
-<!--          uploadTime: '2016-4-3',-->
-<!--          projectId: 'x124',-->
-<!--          company:'abc'-->
-<!--        },-->
-<!--        {-->
-<!--          name: '牛肉干',-->
-<!--          area: '内蒙古',-->
-<!--          status: '上线',-->
-<!--          plantTime: '2016-7-2',-->
-<!--          uploadTime: '2016-4-3',-->
-<!--          projectId: 'x123',-->
-<!--          company:'abc'-->
-<!--        },-->
-<!--        {-->
-<!--          name: '葡萄',-->
-<!--          plantTime: '2016-5-4',-->
-<!--          area: '乌鲁木齐',-->
-<!--          status: '上线',-->
-<!--          uploadTime: '2016-4-3',-->
-<!--          projectId: 'x123',-->
-<!--          company:'abc'-->
-<!--        },-->
-<!--      ],-->
-<!--    }-->
-<!--  },-->
-<!--  methods: {-->
-<!--    deleteRecord(index) {-->
-<!--      this.tableData.splice(index, 1)-->
-<!--      ElMessage({-->
-<!--        message: '删除成功',-->
-<!--        type: 'success',-->
-<!--      })-->
-<!--    },-->
-<!--    handleSizeChange(){-->
+.input::placeholder{
+  font-weight: bolder;
+  color:  #206c0f;
+  font-size:16px ;
+  filter: brightness(1.2);
+}
+.input:hover {
+  filter: brightness(1.2);
+  color:  #206c0f;
+  font-weight: bold;
 
-<!--    },-->
-
-<!--    deleteSelected() {-->
-
-
-<!--    },-->
-<!--    handleCurrentChange(){-->
-
-<!--    },-->
-<!--    handleSelectionChange(val) {-->
-<!--      this.multipleSelection = val-->
-<!--    },-->
-<!--    editMessage(row, index) {-->
-<!--      this.centerDialogVisible = true-->
-<!--      this.form.id = row.id-->
-<!--      this.form.area = row.area-->
-<!--      this.form.status = row.status-->
-<!--      this.form.name = row.name-->
-<!--      this.form.plantTime = row.uploadTime-->
-<!--      this.form.projectId = row.projectId-->
-<!--      this.form.time = row.time-->
-<!--    },-->
-<!--  },-->
-<!--}-->
-<!--</script>-->
+}
+.btn1 {
+  width: 50px;
+  border: 2px solid #6a6c0f;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 7px;
+  display: inline-block;
+  font-family:cursive;
+  font-weight: bold;
+  font-size:16px;
+  color:#5b5e0b;
+}
+.btn1:hover {
+  filter: brightness(1.2);
+  color: #206c0f;
+}
+</style>

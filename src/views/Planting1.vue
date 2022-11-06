@@ -12,6 +12,7 @@
       </div>
       <div class="table">
         <el-table :data="plantInfo"
+
                   border
                   :header-row-style="headerRowStyle"
                   :row-style="rowState"
@@ -123,7 +124,6 @@ export default {
     });
     const method = reactive({
       headerRowStyle(args){
-        console.log(args)
         return {
           height: '50px',
           color:'#5b5e0b',
