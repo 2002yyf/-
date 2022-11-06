@@ -19,10 +19,10 @@ request.interceptors.request.use(config => {
 
     if (!whiteUrls.includes(config.url)) {  // 校验请求白名单
         // 取出sessionStorage里面缓存的用户信息
-        let userJson = sessionStorage.getItem("user")
-        if (!userJson) {
-            router.push("/")
-        }
+        // let userJson = sessionStorage.getItem("user")
+        // if (!userJson) {
+        //     router.push("/")
+        // }
     }
     return config
 }, error => {

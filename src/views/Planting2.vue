@@ -4,7 +4,7 @@
   </div>
   <div style="width:100%;display: flex;flex-wrap: wrap">
     <Aside />
-    <div class="box" style="width: 1300px">
+    <div class="box" style="width: auto">
       <div>
         <button class="btn1" style="width: 140px" @click="handleNew(row)">新增生长信息</button>
         <button class="btn1" style="margin-left: 120px" @click="select(row)">查找</button>
