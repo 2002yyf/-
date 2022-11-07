@@ -3,10 +3,10 @@
     <Top />
   </div>
 
-  <div style="width:100%;display: flex;">
+  <div style="width:1000;display: flex;">
     <Aside />
 
-    <div style="width:100%;padding-top: 15px; background-color: #edf5ea; background-size:100% 100%;">
+    <div style="width:1000;padding-top: 15px; background-color: #edf5ea; background-size:1000 1000;">
       <div class="box">
         <el-form :inline="true" :model="formInline" class="demo-form-inline">
           <el-form-item>
@@ -95,7 +95,7 @@
         <el-pagination style="color: #00b891;font-family:cursive;font-weight: bold;"
             :current-page="page"
             :page-size="pageSize"
-            :page-sizes="[4, 6,8]"
+            :page-sizes="[2,4,6,8,]"
             layout="total, sizes, prev, pager, next, jumper"
             :total="total"
             @size-change="handleSizeChange"
@@ -121,7 +121,7 @@ export default {
         status:'',
       },
       page:1,
-      pageSize:5,
+      pageSize:6,
       total: 0,
       tableData: [],
     }
@@ -189,14 +189,15 @@ export default {
 <style lang="scss" scoped>
 .table{
   padding-left: 40px;
-  padding-right: 45px;
+  padding-right: 40px;
   padding-top: 20px;
+  width: auto;
+  height: auto;
 }
 .box {
   padding-top: 20px;
   padding-left: 40px;
   padding-right: 40px;
-  width: 100%;
 }
 .btn {
   width: 55px;
