@@ -31,14 +31,14 @@
           <el-form-item prop="role">
             <div class="radio">
               <el-radio-group class="el-radio-group" v-model="form.role">
-                <el-radio class="radio1" label="1">管理员</el-radio>
-                <el-radio class="radio2" label="0">非管理员</el-radio>
+                <el-radio class="radio1" label="1"  @keypress.native.enter="login">管理员</el-radio>
+                <el-radio class="radio2" label="0"  @keypress.native.enter="login">非管理员</el-radio>
               </el-radio-group>
             </div>
           </el-form-item>
         </el-form>
         <div class="action">
-          <div class="btn" @click="login">登录</div>
+          <div class="btn"  @click="login">登录</div>
           <div
               class="btn"
               @click="this.$router.push('register')"
@@ -83,7 +83,7 @@ export default {
                 type: "success",
                 message: "登录成功"
               })
-              sessionStorage.setItem("user", JSON.stringify(res.data))  // 缓存用户信息
+              localStorage.setItem("userinfo", JSON.stringify(res.data))  // 缓存用户信息
               this.$router.push("home")  //登录成功之后进行页面的跳转，跳转到主页
             }
             else {
