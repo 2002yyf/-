@@ -1,11 +1,8 @@
 <template>
-  <div>
-    <Top />
-  </div>
-  <div style="width:100%;display: flex;flex-wrap: wrap">
-    <Aside />
-    <div class="box" style="width: auto">
-      <div>
+  <Top class="top"/>
+  <Aside class="aside"/>
+  <div class="main">
+      <div class="search">
         <div class="btn1" style="width: 140px" @click="handleNew(row)">新增作物信息</div>
         <div class="btn1" style="margin-left: 120px" @click="select(row)">查找</div>
         <input class="input" style="margin-left: 10px" v-model="plantInfo.id" placeholder="请输入作物编号" />
@@ -19,7 +16,7 @@
                   :header-cell-style="{'background':'#e0eed1','text-align': 'center'}"
                   :cell-style="{'text-align':'center',backgroundColor: '#dee7da',}"
                   @selection-change="handleSelectionChange"
-                 >
+        >
           <el-table-column type="selection" width="55" />
           <el-table-column prop="id" label="作物编号" align="center" header-align="left" width="100px"/>
           <el-table-column prop="name"  label="作物名称" />
@@ -28,9 +25,9 @@
           <el-table-column prop="num"  label="培育数量"/>
           <el-table-column  fixed="right" label="操作" width="250px">
             <template #default="{ row }">
-                <div  class="btn" @click="handleDetail(row)">详情</div>
-                <div  class="btn" @click="handleEdit(row)">编辑</div>
-                <div  class="btn" @click="handleDel(row)">删除</div>
+              <div  class="btn" @click="handleDetail(row)">详情</div>
+              <div  class="btn" @click="handleEdit(row)">编辑</div>
+              <div  class="btn" @click="handleDel(row)">删除</div>
             </template>
           </el-table-column>
         </el-table>
@@ -60,7 +57,6 @@
       <!-- 详情弹窗 -->
       <Detail v-if="detailShow" :rowInfo="rowInfo" @closeDetail="closeDetail" />
     </div>
-  </div>
 </template>
 
 <script>
@@ -200,68 +196,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.box {
-  padding-top: 40px;
-  padding-left: 40px;
-  padding-right: 40px;
-  width: 700px;
-}
-.table{
-  padding-top: 20px;
-}
-.btn {
-  width: 55px;
-  border: 2px solid #52a640;
-  text-align: center;
-  line-height: 30px;
-  border-radius: 8px;
-  display: inline-block;
-  margin-left:10px;
-}
-.btn:hover {
-  filter: brightness(1.2);
-  color: #6a6c0f;
-}
-.input{
-  width:200px;
-  border: 2px solid #6a6c0f;
-  text-align: center;
-  line-height: 40px;
-  height: 40px;
-  border-radius: 8px;
-  display: inline-block;
-  margin-left:10px;
-  font-weight: bold;
-  font-size:20px ;
-  font-family:cursive;
-  color:#6a6c0f;
-}
-
-.input::placeholder{
-  font-weight: bolder;
-  color:  #206c0f;
-  font-size:20px ;
-}
-.input:hover {
-  filter: brightness(1.2);
-  color:  #206c0f;
-  font-weight: bold;
-
-}
-.btn1 {
-  width: 65px;
-  border: 2px solid #6a6c0f;
-  text-align: center;
-  line-height: 35px;
-  border-radius: 8px;
-  display: inline-block;
-  font-family:cursive;
-  font-weight: bold;
-  font-size:20px;
-  color:#5b5e0b;
-}
-.btn1:hover {
-  filter: brightness(1.2);
-  color: #206c0f;
-}
 </style>

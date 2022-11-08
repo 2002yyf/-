@@ -1,13 +1,8 @@
 <template>
+  <Top class="top"/>
+  <Aside class="aside"/>
+  <div class="main">
 
-  <div>
-    <Top/>
-
-  </div>
-  <div style="display:flex;flex-wrap: wrap;height: 100%">
-    <Aside/>
-
-      <div style="display: flex;width: 87%;flex-direction: column">
         <div style="width: 100%;margin-top:2%">
             <el-input style="width: 30%;height: 40px;margin-left:30%;" placeholder="请输入用户昵称"></el-input>
             <el-button type="primary" round style="margin-left: 20px" size="large">查询</el-button>
@@ -83,7 +78,6 @@
       </span>
           </template>
         </el-dialog>
-      </div>
 
     <el-dialog
         v-model="centerDialogVisible"

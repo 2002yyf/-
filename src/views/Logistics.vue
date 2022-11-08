@@ -1,12 +1,7 @@
 <template>
-  <div>
-    <Top/>
-  </div>
-  <div>
-    <div>
-      <Aside style="float: left"/>
-    </div>
-    <div>
+  <Top class="top"/>
+  <Aside class="aside"/>
+    <div class="main">
       <div class="search">
         <el-input
             v-model="input3"
@@ -96,7 +91,6 @@
       </div>
 
     </div>
-  </div>
 </template>
 
 <script>

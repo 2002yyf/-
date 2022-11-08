@@ -1,11 +1,7 @@
 <template>
-  <div>
-    <Top/>
-  </div>
-
-  <div style="display:flex;">
- <Aside/>
-    <div style="width:86% ;display: flex;flex-wrap:wrap;align-content: flex-start;">
+  <Top class="top"/>
+  <Aside class="aside"/>
+    <div class="main" style="display: flex;flex-wrap:wrap;">
       <el-card shadow="hover" style="width:25%;height:20%;margin-top: 150px;margin-left: 100px">
         <div style="display: flex;justify-content: center;height: 30px;font-size: 25px;align-items: center">
           <el-icon  style="margin-right: 15px;"><User /></el-icon>
@@ -74,11 +70,6 @@
     </div>
 
 
-
-
-
-
-  </div>
 </template>
 
 <script>

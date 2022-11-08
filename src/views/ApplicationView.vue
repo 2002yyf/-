@@ -1,14 +1,18 @@
 <template>
-  <el-container>
-    <el-header><Top/></el-header>
+<!--  <el-container>-->
+<!--    <el-header><Top/></el-header>-->
 
-    <el-container>
-      <el-aside><Aside style="width: 74%"/></el-aside>
-    </el-container>
-  </el-container>
+<!--    <el-container>-->
+<!--      <el-aside><Aside style="width: 74%"/></el-aside>-->
+<!--    </el-container>-->
+<!--  </el-container>-->
 
 
+  <Top class="top"/>
+  <Aside class="aside"/>
+  <div class="main">
 
+  </div>
 
 
 

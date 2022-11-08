@@ -1,11 +1,8 @@
 <template>
-  <div>
-    <Top />
-  </div>
-  <div style="width:100%;display: flex;flex-wrap: wrap">
-    <Aside />
-    <div class="box" style="width: auto">
-      <div>
+  <Top class="top"/>
+  <Aside class="aside"/>
+  <div class="main">
+      <div class="search">
         <button class="btn1" style="width: 140px" @click="handleNew(row)">新增生长信息</button>
         <button class="btn1" style="margin-left: 120px" @click="select(row)">查找</button>
         <input class="input" style="margin-left: 10px" v-model="plantInfo.id" placeholder="请输入信息编号" />
@@ -30,7 +27,7 @@
           <el-table-column prop="description" label="描述"/>
           <el-table-column  fixed="right" label="操作" width="200px">
             <template #default="{ row }">
-<!--              <div  class="btn" @click="handleDetail(row)">详情</div>-->
+              <!--              <div  class="btn" @click="handleDetail(row)">详情</div>-->
               <div  class="btn" @click="handleEdit(row)">编辑</div>
               <div  class="btn" @click="handleDel(row)">删除</div>
             </template>
@@ -62,7 +59,6 @@
       <!-- 详情弹窗 -->
       <Detail v-if="detailShow" :rowInfo="rowInfo" @closeDetail="closeDetail" />
     </div>
-  </div>
 </template>
 
 <script>
@@ -208,69 +204,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.box {
-  padding-top: 40px;
-  padding-left: 40px;
-  padding-right: 40px;
-  width: 700px;
-}
-.table{
-  padding-top: 20px;
-}
-.btn {
-  width: 55px;
-  border: 2px solid #52a640;
-  text-align: center;
-  line-height: 30px;
-  border-radius: 8px;
-  display: inline-block;
-  margin-left:10px;
-}
-.btn:hover {
-  filter: brightness(1.2);
-  color: #6a6c0f;
-}
-.input{
-  width:200px;
-  border: 2px solid #6a6c0f;
-  text-align: center;
-  line-height: 40px;
-  height: 40px;
-  border-radius: 8px;
-  display: inline-block;
-  margin-left:10px;
-  font-weight: bold;
-  font-size:20px ;
-  font-family:cursive;
-  color:#6a6c0f;
-}
-
-.input::placeholder{
-  font-weight: bolder;
-  color:  #206c0f;
-  font-size:20px ;
-}
-.input:hover {
-  filter: brightness(1.2);
-  color:  #206c0f;
-  font-weight: bold;
-
-}
-.btn1 {
-  width: 65px;
-  border: 2px solid #6a6c0f;
-  text-align: center;
-  line-height: 35px;
-  border-radius: 8px;
-  display: inline-block;
-  font-family:cursive;
-  font-weight: bold;
-  font-size:20px;
-  color:#5b5e0b;
-}
-.btn1:hover {
-  filter: brightness(1.2);
-  color: #206c0f;
-}
 
 </style>

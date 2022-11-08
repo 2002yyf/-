@@ -1,19 +1,19 @@
 <template>
-  <div>
-    <Top />
-  </div>
-
-  <div style="width:1000;display: flex;">
-    <Aside />
-
-    <div style="width:1000;padding-top: 15px; background-color: #edf5ea; background-size:1000 1000;">
-      <div class="box">
+    <Top class="top"/>
+    <Aside class="aside"/>
+    <div class="main">
+      <div class="search">
         <el-form :inline="true" :model="formInline" class="demo-form-inline">
           <el-form-item>
             <input class="input" v-model="formInline.name" placeholder="商品名称"/>
           </el-form-item>
           <el-form-item>
-            <input class="input" v-model="formInline.status" placeholder="申请状态"/>
+            <div style="font-size: 17px;font-weight: bold;color: #0b5b33;font-family:cursive">状态选择：
+            </div>
+            <select class="input" style="width:100px"  v-model="formInline.status">
+              <option class="input" label="已上线" value=1></option>
+              <option class="input" label="已下线" value=0></option>
+            </select>
           </el-form-item>
           <el-form-item>
             <button class="btn1" @click="onSubmit">查询</button>
@@ -21,90 +21,80 @@
           </el-form-item>
         </el-form>
       </div>
-      <div class="table">
+      <div class="table" style="margin-top: 0">
         <el-table
             border
             :data="tableData"
+            :cell-style="{textAlign: 'center'}"
             :header-row-style="headerRowStyle"
             :row-style="rowState"
             :header-cell-style="{'background':'#8c9d47',textAlign: 'center'}"
+            width="1640"
         >
           <el-table-column label="产品编号" width="100">
             <template #default="scope">
-              <div style="display: flex; align-items: center">
                 <span>{{ scope.row.id }}</span>
-              </div>
             </template>
           </el-table-column>
 
-          <el-table-column label="产品名称" width="200">
+          <el-table-column label="产品名称" width="150">
             <template #default="scope">
-              <div style="display: flex; align-items: center">
                 <span>{{ scope.row.name }}</span>
-              </div>
             </template>
           </el-table-column>
 
           <el-table-column label="状态" width="100">
             <template #default="scope">
-              <div style="display: flex; align-items: center">
                 <span>{{ scope.row.status }}</span>
-              </div>
             </template>
           </el-table-column>
 
 
-          <el-table-column label="上传单位" width="230">
+          <el-table-column label="上传单位" width="220">
             <template #default="scope">
-              <div style="display: flex; align-items: center">
                 <span >{{ scope.row.company }}</span>
-              </div>
             </template>
           </el-table-column>
 
 
-          <el-table-column label="地区" width="150">
+          <el-table-column label="地区" width="110">
             <template #default="scope">
-              <div style="display: flex; align-items: center">
                 <span>{{ scope.row.area }}</span>
-              </div>
             </template>
           </el-table-column>
 
-          <el-table-column label="生产时间" width="230">
+          <el-table-column label="生产时间" width="200">
             <template #default="scope">
-              <div style="display: flex; align-items: center">
                 <el-icon><timer /></el-icon>
-                <span style="margin-left: 15px">{{ scope.row.createTime }}</span>
-              </div>
+                <span>{{ scope.row.createTime }}</span>
             </template>
           </el-table-column>
 
-          <el-table-column label="上传时间" width="250">
+          <el-table-column label="上传时间" width="200">
             <template #default="scope">
-              <div style="display: flex; align-items: center">
                 <el-icon><timer /></el-icon>
-                <span style="margin-left: 15px">{{ scope.row.updateTime }}</span>
-              </div>
+                <span>{{ scope.row.updateTime }}</span>
             </template>
           </el-table-column>
-
-
+          <el-table-column label="图片" width="150">
+            <template #default="scope">
+                <span>{{ scope.row.image }}</span>
+            </template>
+          </el-table-column>
         </el-table>
       </div>
-      <div class="table">
+      <div style="margin-top:20px; margin-left: 400px;margin-bottom: 20px">
         <el-pagination style="color: #00b891;font-family:cursive;font-weight: bold;"
-            :current-page="page"
-            :page-size="pageSize"
-            :page-sizes="[2,4,6,8,]"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="total"
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
+                       :current-page="page"
+                       :page-size="pageSize"
+                       :page-sizes="[6,8,10,12]"
+                       layout="total, sizes, prev, pager, next, jumper"
+                       :total="total"
+                       @size-change="handleSizeChange"
+                       @current-change="handleCurrentChange"
         />
       </div>
-    </div>
-  </div>
+      </div>
 </template>
 
 
@@ -122,7 +112,7 @@ export default {
         status:'',
       },
       page:1,
-      pageSize:6,
+      pageSize:8,
       total: 0,
       tableData: [],
     }
@@ -147,7 +137,7 @@ export default {
         fontWeight:'bold',
         background: '#dee7da',
         fontFamily:'cursive',
-        fontSize:"17px",
+        fontSize:"15px",
       }
     },
     loadData(){
@@ -189,71 +179,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.table{
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-top: 20px;
-  width: auto;
-  height: auto;
-}
-.box {
-  padding-top: 20px;
-  padding-left: 40px;
-  padding-right: 40px;
-}
-.btn {
-  width: 55px;
-  border: 2px solid #52a640;
-  text-align: center;
-  line-height: 30px;
-  border-radius: 8px;
-  display: inline-block;
-  margin-left:10px;
-}
-.btn:hover {
-  filter: brightness(1.2);
-  color: #6a6c0f;
-}
-.input{
-  width:130px;
-  border: 2px solid #6a6c0f;
-  text-align: center;
-  line-height: 35px;
-  height: 35px;
-  border-radius: 8px;
-  display: inline-block;
-  font-weight: bold;
-  font-size:16px ;
-  font-family:cursive;
-  color:#6a6c0f;
-}
 
-.input::placeholder{
-  font-weight: bolder;
-  color:  #206c0f;
-  font-size:16px ;
-  filter: brightness(1.2);
-}
-.input:hover {
-  filter: brightness(1.2);
-  color:  #206c0f;
-  font-weight: bold;
-
-}
-.btn1 {
-  width: 50px;
-  border: 2px solid #6a6c0f;
-  text-align: center;
-  line-height: 30px;
-  border-radius: 7px;
-  display: inline-block;
-  font-family:cursive;
-  font-weight: bold;
-  font-size:16px;
-  color:#5b5e0b;
-}
-.btn1:hover {
-  filter: brightness(1.2);
-  color: #206c0f;
-}
 </style>
