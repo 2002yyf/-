@@ -23,6 +23,7 @@
       </div>
       <div class="table">
         <el-table
+            border
             :data="tableData"
             :header-row-style="headerRowStyle"
             :row-style="rowState"
@@ -155,6 +156,7 @@ export default {
           page:this.page,
           pageSize:this.pageSize,
           name:this.formInline.name,
+          status:this.formInline.status
         }
           }
       ).then(res => {
