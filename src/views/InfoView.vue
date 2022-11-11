@@ -31,7 +31,7 @@
             :header-cell-style="{'background':'#8c9d47',textAlign: 'center'}"
             width="1640"
         >
-          <el-table-column label="产品编号" width="100">
+          <el-table-column  label="产品编号" width="100">
             <template #default="scope">
                 <span>{{ scope.row.id }}</span>
             </template>
@@ -78,7 +78,7 @@
           </el-table-column>
           <el-table-column label="图片" width="150">
             <template #default="scope">
-                <span>{{ scope.row.image }}</span>
+              <img  :src="scope.row.image" style="width: 70px;height: 70px">
             </template>
           </el-table-column>
         </el-table>
