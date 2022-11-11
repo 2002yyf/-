@@ -8,7 +8,7 @@
             <input class="input" v-model="formInline.name" placeholder="商品名称"/>
           </el-form-item>
           <el-form-item>
-            <div style="font-size: 17px;font-weight: bold;color: #0b5b33;font-family:cursive">检测：
+            <div style="font-size: 17px;font-weight: bold;color: #0b5b33;font-family:cursive">检测合格：
             </div>
             <select class="input" style="width:120px"  v-model="formInline.status">
               <option class="input" label="检测合格" value=1></option>
@@ -25,11 +25,12 @@
           <el-card class="box-card"
               shadow="hover"
               v-for="item in certificate">
-            <div style="width: 200px;height: 100px">
+            <div style="width: 250px;height: 100px">
+              <div>检测编号：{{item.id}}</div>
               <div>商品编号：{{item.id}}</div>
               <div>商品名称：{{item.name}}</div>
-              <div>化学成分检测status:{{item.status}}</div>
-              <div>防疫检测isPass:{{item.isPass}}</div>
+              <div>化学成分检测:{{item.status}}</div>
+              <div>防疫检测:{{item.isPass}}</div>
             </div>
             <div style="margin-top:5px">
               <button  class="btn1" style="width:100px;" @click="showDetail(item)">查看详情</button>
@@ -59,8 +60,8 @@
           <div class="div" >商品编号：{{data.id}}</div>
           <div class="div" >商品名称：{{data.name}}</div>
           <div class="div" >所属公司:{{data.company}}</div>
-          <div class="div" >化学物质检测证明status:{{data.status}}</div>
-          <div class="div" >防疫检测证明isPass:{{data.isPass}}</div>
+          <div class="div" >化学物质检测证明:{{data.status}}</div>
+          <div class="div" >防疫检测证明:{{data.isPass}}</div>
           <div class="div" >时间:{{data.createTime}}</div>
         </div>
         <div class="card1">
@@ -148,7 +149,6 @@ export default {
             this.data = item;
         },
   },
-
 }
 </script>
 
@@ -206,7 +206,6 @@ export default {
   }
   ::v-deep .el-dialog__body {
     background: linear-gradient(90deg, #b8ecba 0%, rgba(28, 97, 234, 0) 100%);
-
   }
 
 </style>
