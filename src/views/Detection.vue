@@ -190,22 +190,25 @@ export default {
   display: inline-block;
   margin-top: 10px;
 }
-  ::v-deep .el-dialog__header {
+::v-deep .el-dialog {
+  border-radius: 50px;
+}
+::v-deep .el-dialog__header {
     padding: 0 !important;
     width: 100%;
     height: 70px;
     background: linear-gradient(90deg, #9cb46a 0%, rgba(28, 97, 234, 0) 100%);
-  }
-  ::v-deep .el-dialog__title {
+}
+::v-deep .el-dialog__title {
     margin-left: 25px;
     line-height: 70px;
     font-size: 25px;
     color: #2d2f01;
     font-family: cursive;
     font-weight: bold;
-  }
-  ::v-deep .el-dialog__body {
+}
+::v-deep .el-dialog__body {
     background: linear-gradient(90deg, #b8ecba 0%, rgba(28, 97, 234, 0) 100%);
-  }
+}
 
 </style>
