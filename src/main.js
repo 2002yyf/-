@@ -13,7 +13,7 @@ echarts.registerMap('china', geoJson)
 import dataV from '@jiaminghi/data-view'
 import Vant from 'vant';
 import '@/filter/index.js'
-
+import 'vant/lib/index.css';
 
 const app = createApp(App)
 app.use(store).use(router).use(ElementPlus).use(dataV).use(Vant).mount('#app')

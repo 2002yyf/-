@@ -16,6 +16,7 @@ import AppHomeView from "@/appview/AppHomeView";
 import SearchView from "@/appview/SearchView";
 import AppInfoView from "@/appview/InfoView"
 import AppRegisterView from "@/appview/AppRegisterView";
+import providerSearchView from "@/appview/ProviderSearchView";
 
 const routes = [
   {
@@ -98,6 +99,10 @@ const routes = [
     path: '/appRegister',
     name: 'appRegister',
     component: AppRegisterView
+  },{
+    path:'/providerSearch',
+    name:'providerSearch',
+    component: providerSearchView
   }
 
 
