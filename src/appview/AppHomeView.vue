@@ -11,7 +11,7 @@
       <van-grid :column-num="3" style="margin: 0">
         <van-grid-item icon="orders-o" text="申请权限" v-if="identity==='普通用户'"/>
         <van-grid-item icon="shop-o" text="供应商查询" to="/providerSearch"/>
-        <van-grid-item icon="plus" text="上传产品" v-if="identity==='供应商'" />
+        <van-grid-item icon="plus" text="上传产品" v-if="identity==='供应商'" to="/uploadProject" />
         <van-grid-item icon="friends-o" text="人员信息" v-if="identity==='供应商'" />
         <van-grid-item icon="sign" text="上传检测证明" v-if="identity==='供应商'"/>
         <van-grid-item icon="logistics" text="上传物流证明" v-if="identity==='供应商'"/>

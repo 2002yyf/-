@@ -1,5 +1,5 @@
 <template>
-<back msg="供应商查询" from-where="/AppHome"></back>
+<back msg="供应商查询" fromWhere="/AppHome"></back>
   <van-cell-group inset style="margin-top: 50px">
     <van-field
         v-model="providerID"
