@@ -2,7 +2,7 @@
   <Top class="top"/>
   <Aside class="aside"/>
     <div class="main" style="display: flex;flex-wrap:wrap;">
-      <el-card shadow="hover" style="width:25%;height:20%;margin-top: 150px;margin-left: 100px">
+      <el-card shadow="hover" style="width:25%;height:20%;margin-top: 100px;margin-left: 70px">
         <div style="display: flex;justify-content: center;height: 30px;font-size: 25px;align-items: center">
           <el-icon  style="margin-right: 15px;"><User /></el-icon>
           {{user}}
@@ -13,7 +13,7 @@
       </el-card>
 
 
-      <el-card shadow="hover" style="width:25%;height:20%;margin-top: 150px;margin-left: 100px">
+      <el-card shadow="hover" style="width:25%;height:20%;margin-top: 100px;margin-left: 100px">
         <div style="display: flex;justify-content: center;height: 30px;font-size: 25px;align-items: center">
           <el-icon  style="margin-right: 15px;"><Van /></el-icon>
           {{provider}}
@@ -24,7 +24,7 @@
       </el-card>
 
 
-      <el-card shadow="hover" style="width:25%;height:20%;margin-top: 150px;margin-left: 100px">
+      <el-card shadow="hover" style="width:25%;height:20%;margin-top: 100px;margin-left: 100px">
         <div style="display: flex;justify-content: center;height: 30px;font-size: 25px;align-items: center">
           <el-icon  style="margin-right: 15px;"><PieChart /></el-icon>
           {{kind}}
@@ -35,7 +35,7 @@
       </el-card>
 
 
-      <el-card shadow="hover" style="width:25%;height:20%;margin-top: 150px;margin-left: 100px">
+      <el-card shadow="hover" style="width:25%;height:20%;margin-top: 100px;margin-left: 70px">
         <div style="display: flex;justify-content: center;height: 30px;font-size: 25px;align-items: center">
           <el-icon  style="margin-right: 15px;"><Document /></el-icon>
           {{waiting}}
@@ -46,7 +46,7 @@
       </el-card>
 
 
-      <el-card shadow="hover" style="width:25%;height:20%;margin-top: 150px;margin-left: 100px">
+      <el-card shadow="hover" style="width:25%;height:20%;margin-top: 100px;margin-left: 100px">
         <div style="display: flex;justify-content: center;height: 30px;font-size: 25px;align-items: center">
           <el-icon  style="margin-right: 15px;"><FolderChecked /></el-icon>
           {{online}}
@@ -57,7 +57,7 @@
       </el-card>
 
 
-      <el-card shadow="hover" style="width:25%;height:20%;margin-top: 150px;margin-left: 100px">
+      <el-card shadow="hover" style="width:25%;height:20%;margin-top: 100px;margin-left: 100px">
         <div style="display: flex;justify-content: center;height: 30px;font-size: 25px;align-items: center">
           <el-icon  style="margin-right: 15px;"><Search /></el-icon>
           {{searchTimes}}
@@ -68,13 +68,13 @@
       </el-card>
 
     </div>
-
-
 </template>
 
 <script>
 import Aside from '@/components/Aside.vue'
 import Top from '@/components/Top.vue'
+import {ElNotification} from "element-plus";
+import {h} from "vue";
 export default {
   name: 'HomeView',
   components: {
@@ -88,8 +88,33 @@ export default {
       waiting:0,
       online:0,
       searchTimes:0,
-
     }
+  },
+  methods:{
+    load(){
+      let date=localStorage.getItem("date")
+      if(!date)
+      {
+        localStorage.setItem("date", JSON.stringify( new Date().getDate()))
+        ElNotification({
+          title: '消息',
+          message: h('i', { style: 'color: teal' }, '您有'+this.kind+'条申请待审批'),
+        })
+      }
+      else{
+        if(date!=new Date().getDate())
+        {
+          localStorage.setItem("date", JSON.stringify( new Date().getDate()))
+          ElNotification({
+            title: '消息',
+            message: h('i', { style: 'color: teal' }, '您有'+this.kind+'条申请待审批'),
+          })
+        }
+      }
+    }
+  },
+  mounted() {
+    this.load();
   }
 }
 </script>

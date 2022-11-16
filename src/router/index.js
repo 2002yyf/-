@@ -10,7 +10,6 @@ import Detection from "@/views/Detection";
 import Logistics from "@/views/Logistics";
 import Planting1 from "@/views/Planting1";
 import Planting2 from "@/views/Planting2";
-import ApplicationView from "@/views/ApplicationView";
 import AppLoginView from "@/appview/AppLoginView";
 import AppHomeView from "@/appview/AppHomeView";
 import SearchView from "@/appview/SearchView";
@@ -77,16 +76,12 @@ const routes = [
     name:'UserView',
     component: UserView,
 },{
-    path:'/application',
-    name:'application',
-    component: ApplicationView
-  },{
     path:'/FrontLogin',
     name:'FrontLogin',
     component: AppLoginView
   },{
     path: '/appHome',
-    name:'/appHome',
+    name:'appHome',
     component: AppHomeView
   },{
     path: '/search',
@@ -119,23 +114,23 @@ const router = createRouter({
 });
 
 
-router.beforeEach((to, from, next) => {
-  if (to.path === '/managerLogin') {    //若要跳转的页面是登录界面
-    next();     //直接跳转
-  }
-  else if (to.path === '/managerHome'){   //若要跳转的页面是个人界面
-    let token = localStorage.getItem('token');    //获取本地存储的token值
-    if (token===null||token===''){    //若token为空则验证不成功，跳转到登录页面
-      next('/managerLogin');
-    }
-    else{           //不为空则验证成功
-      next();
-    }
-  }
-  else{
-    next();
-  }
-});
+// router.beforeEach((to, from, next) => {
+//   if (to.path === '/managerLogin') {    //若要跳转的页面是登录界面
+//     next();     //直接跳转
+//   }
+//   else if (to.path === '/managerHome'){   //若要跳转的页面是个人界面
+//     let token = localStorage.getItem('token');    //获取本地存储的token值
+//     if (token===null||token===''){    //若token为空则验证不成功，跳转到登录页面
+//       next('/managerLogin');
+//     }
+//     else{           //不为空则验证成功
+//       next();
+//     }
+//   }
+//   else{
+//     next();
+//   }
+// });
 
 export default router;
 

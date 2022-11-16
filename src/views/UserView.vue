@@ -3,115 +3,118 @@
   <Aside class="aside"/>
   <div class="main">
 
-        <div style="width: 100%;margin-top:2%">
-            <el-input style="width: 30%;height: 40px;margin-left:30%;" placeholder="请输入用户昵称"></el-input>
-            <el-button type="primary" round style="margin-left: 20px" size="large">查询</el-button>
+        <div class="search" style="margin-left:100px ">
+            <input class="input"  style="width: 20%;height: 40px;margin-left:30%;" placeholder="请输入用户昵称"/>
+            <button class="btn1" type="primary" round style="margin-left: 20px" size="large">查询</button>
             <el-badge :value="application" class="item" style="margin-left: 68%;cursor:pointer;" @click="dealClick">
               <el-icon :size="25"><Bell /></el-icon>
             </el-badge>
         </div>
-
-    <el-table
-        :data="tableData"
-        :default-sort="{ prop: 'date', order: 'descending' }"
-        style="width: 60%;margin-left: 10%;"
-    >
-      <el-table-column prop="identity" label="身份"  width="180" />
-      <el-table-column prop="name" label="昵称" width="180" />
-      <el-table-column prop="registerTime" label="注册日期" sortable/>
-      <el-table-column label="公司人员" >
-        <template #default="scope">
+<div class="table" style="margin-left: 150px">
+  <el-table
+      :data="tableData"
+      :default-sort="{ prop: 'date', order: 'descending' }"
+      style="width: 60%;margin-left: 10%;"
+      :cell-style="{textAlign: 'center'}"
+      :header-row-style="headerRowStyle"
+      :row-style="rowState"
+      :header-cell-style="{'background':'#8c9d47',textAlign: 'center'}"
+  >
+    <el-table-column prop="identity" label="身份"  width="180" />
+    <el-table-column prop="name" label="昵称" width="180" />
+    <el-table-column prop="registerTime" label="注册日期" sortable/>
+    <el-table-column label="公司人员" >
+      <template #default="scope">
         <span v-if="scope.row.identity ==='普通用户'">无</span>
-          <el-icon :size="20"  v-if="scope.row.identity === '产品供方'" @click = "openDraw(scope.row)"><User /></el-icon>
-        </template>
-      </el-table-column>>
-      <el-table-column label="状态" width="180" >
-        <template #default="scope">
-      <el-switch
-          v-model="scope.row.status"
-          class="ml-2"
-          style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
-          @change="change(scope.$index)"
-      />
-        </template>
-        </el-table-column>
-    </el-table>
-
-
-        <el-drawer v-model="drawer" title="员工信息" :with-header="false">
-          <el-card v-for="(staff,i) in staff" style="margin-top: 40px;height: 20%;">
-            <div style="width: 100%;height: 100%;display: flex">
-            <el-avatar shape="square" :size="100" :src="staff.pic" />
-                <span style="margin-left: 10%;font-size: 20px;margin-top:10%">{{staff.name}}</span>
-            <el-avatar shape="square" :size="100" :src="staff.permit" style="margin-left:10%" />
-
-            </div>
-          </el-card>
-        </el-drawer>
-
-
-
-
-        <el-pagination
-            :currentPage="currentPage4"
-            :page-size="pageSize4"
-            :page-sizes="[5, 10, 15, 20]"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="total"
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            style="padding-left: 25%;padding-top: 22px"
+        <el-icon :size="20"  v-if="scope.row.identity === '产品供方'" @click = "openDraw(scope.row)"><User /></el-icon>
+      </template>
+    </el-table-column>>
+    <el-table-column label="状态" width="180" >
+      <template #default="scope">
+        <el-switch
+            v-model="scope.row.status"
+            class="ml-2"
+            style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
+            @change="change(scope.$index)"
         />
+      </template>
+    </el-table-column>
+  </el-table>
+</div>
 
-        <el-dialog
-            v-model="dialogVisible"
-            title="提示"
-            width="30%"
-        >
-          <span style="font-size: 16px;letter-spacing: 1px">是否确认修改用户状态</span>
-          <template #footer>
+    <div style="margin-top:20px; margin-left: 400px;margin-bottom: 20px">
+      <el-pagination style="color: #00b891;font-family:cursive;font-weight: bold;"
+                     :current-page="page"
+                     :page-size="pageSize"
+                     :page-sizes="[6,8,10,12]"
+                     layout="total, sizes, prev, pager, next, jumper"
+                     :total="total"
+                     @size-change="handleSizeChange"
+                     @current-change="handleCurrentChange"
+      />
+    </div>
+
+  </div>
+  <el-drawer v-model="drawer" title="员工信息" :with-header="false">
+    <el-card v-for="(staff,i) in staff" style="margin-top: 40px;height: 20%;">
+      <div style="width: 100%;height: 100%;display: flex">
+        <el-avatar shape="square" :size="100" :src="staff.pic" />
+        <span style="margin-left: 10%;font-size: 20px;margin-top:10%">{{staff.name}}</span>
+        <el-avatar shape="square" :size="100" :src="staff.permit" style="margin-left:10%" />
+
+      </div>
+    </el-card>
+  </el-drawer>
+
+  <el-dialog
+      v-model="dialogVisible"
+      title="提示"
+      width="30%"
+  >
+    <span style="font-size: 16px;letter-spacing: 1px">是否确认修改用户状态</span>
+    <template #footer>
       <span class="dialog-footer">
         <el-button @click="rollbackModify">取消</el-button>
         <el-button type="primary" @click="dialogVisible = false"
         >确定</el-button
         >
       </span>
-          </template>
-        </el-dialog>
+    </template>
+  </el-dialog>
 
-    <el-dialog
-        v-model="centerDialogVisible"
-        title="产品供方申请"
-        width="30%"
-        align-center
+
+  <el-dialog
+      v-model="centerDialogVisible"
+      title="产品供方申请"
+      width="30%"
+      align-center
+  >
+    <el-form
+        label-width="100px"
+        :model="userForm"
+        style="max-width: 460px"
     >
-      <el-form
-          label-width="100px"
-          :model="userForm"
-          style="max-width: 460px"
-      >
-        <el-form-item label="昵称">
-          {{userForm.name}}
-        </el-form-item>
-        <el-form-item label="证明文件">
-        </el-form-item>
-        <el-form-item label="说明">
-          {{userForm.text}}
-        </el-form-item>
-      </el-form>
+      <el-form-item label="昵称">
+        {{userForm.name}}
+      </el-form-item>
+      <el-form-item label="证明文件">
+      </el-form-item>
+      <el-form-item label="说明">
+        {{userForm.text}}
+      </el-form-item>
+    </el-form>
 
 
 
-      <template #footer>
+    <template #footer>
       <span class="dialog-footer">
         <el-button @click="centerDialogVisible = false">拒绝</el-button>
         <el-button type="info" @click="centerDialogVisible = false">忽略</el-button>
         <el-button type="primary" @click="centerDialogVisible = false">同意</el-button>
       </span>
-      </template>
-    </el-dialog>
+    </template>
+  </el-dialog>
 
-  </div>
 
 </template>
 
@@ -126,9 +129,10 @@ export default {
   },
   data(){
     return{
-      currentPage4:0,
-      pageSize4:0,
-      total:0,
+      page:1,
+      pageSize:8,
+      total: 0,
+
       confirmIndex:0,
       centerDialogVisible:false,
       application:0,
@@ -169,15 +173,42 @@ export default {
     }
   },
   methods:{
-    handleSizeChange(){
-      alert(1)
-    },openDraw(row){
+    headerRowStyle(args){
+      return {
+        height: '50px',
+        color:'#5b5e0b',
+        fontSize:'18px',
+        fontFamily:'cursive',
+        fontWeight:'bolder',
+        background:'#e0eed1',
+      }
+    },
+    rowState(arg){
+      return {
+        color:'#6a9a49',
+        fontWeight:'bold',
+        background: '#dee7da',
+        fontFamily:'cursive',
+        fontSize:"15px",
+      }
+    },
+    handleSizeChange(val) {
+      this.pageSize = val
+      this.loadData()
+      console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange(val) {
+      this.page=val
+      this.loadData()
+      console.log(`当前页: ${val}`);
+    },
+
+
+    openDraw(row){
       this.drawer = true
       console.log(row)
     },
-    handleCurrentChange(){
-
-    },dealClick(){
+    dealClick(){
       this.centerDialogVisible = true
     },change(index){
       this.dialogVisible = true
