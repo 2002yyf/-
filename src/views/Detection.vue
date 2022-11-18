@@ -2,7 +2,10 @@
   <Top class="top"/>
   <Aside class="aside"/>
     <div class="main">
-      <div class="search" style="margin-left: 70px;margin-top: 40px">
+      <div class="tag" style="margin-left: 80px">
+           商品检测
+      </div>
+      <div class="search">
         <el-form :inline="true" :model="formInline" class="demo-form-inline">
           <el-form-item>
             <input class="input" v-model="formInline.name" placeholder="商品名称"/>
@@ -21,24 +24,26 @@
           </el-form-item>
         </el-form>
       </div>
-        <div class="table" style="height: 50px;margin-top: 0;margin-left: 20px;">
+      <div class="table" style="margin-top: 0;margin-left: 20px;">
           <el-card class="box-card"
-              shadow="hover"
-              v-for="item in certificate">
+                   element-loading-background="#90b9ad"
+                   element-loading-text="拼命加载中"
+                   v-loading="loading"
+                   shadow="hover"
+                   v-for="item in certificate">
             <div style="width: 250px;height: 100px">
               <div>检测编号：{{item.id}}</div>
-              <div>商品编号：{{item.id}}</div>
+              <div>商品编号：{{item.productId}}</div>
               <div>商品名称：{{item.name}}</div>
-              <div>化学成分检测:{{item.status}}</div>
-              <div>防疫检测:{{item.isPass}}</div>
+              <div>检测是否通过:{{item.isValid}}</div>
             </div>
             <div style="margin-top:5px">
               <button  class="btn1" style="width:100px;" @click="showDetail(item)">查看详情</button>
             </div>
           </el-card>
           <el-empty description="无结果" v-if="certificate.length===0" />
-        </div>
-      <div style="margin-top:430px; margin-left: 400px;width: 800px;padding: 30px">
+      </div>
+      <div style="margin-top:430px; margin-left: 400px;width: 600px;padding: 30px">
         <el-pagination style="color: #00b891;font-family:cursive;font-weight: bold;"
                        :current-page="page"
                        :page-size="pageSize"
@@ -55,17 +60,21 @@
         style="font-size: 45px;"
         width="700px"
     >
-      <div class="card">
+      <div
+          class="card"
+          element-loading-background="#b8ecba"
+          element-loading-text="拼命加载中"
+          v-loading="loading1"
+      >
         <div class="card1" style="margin-left: 20px;">
-          <div class="div" >商品编号：{{data.id}}</div>
           <div class="div" >商品名称：{{data.name}}</div>
-          <div class="div" >所属公司:{{data.company}}</div>
-          <div class="div" >化学物质检测证明:{{data.status}}</div>
-          <div class="div" >防疫检测证明:{{data.isPass}}</div>
-          <div class="div" >时间:{{data.createTime}}</div>
+          <div class="div" >检测是否通过:{{data.isValid}}</div>
+          <div class="div" >检测单位:{{data.unity}}</div>
+          <div class="div" >负责人员:{{data.director}}</div>
+          <div class="div" >检测时间:{{data.createTime}}</div>
         </div>
         <div class="card1">
-          <img  :src="data.image" class="image">
+          <img  :src="data.img" class="image">
         </div>
       </div>
       <div style="margin-top: 30px">
@@ -89,6 +98,8 @@ export default {
   components: { Aside, Top },
   data() {
     return {
+      loading: false,
+      loading1: false,
       dialogVisible:false,
       formInline: {
         name:'',
@@ -97,14 +108,15 @@ export default {
       page:1,
       pageSize:8,
       total: 0,
-      certificate: [],
+      certificate: [
+      ],
       data:{
-        id:'',
         name:'',
-        company:'',
-        status:'',
-        isPass:'',
-        image:'',
+        unity:'',
+        director:'',
+        img:'',
+        isValid:'',
+        createTime:''
       }
       ,
     }
@@ -117,17 +129,21 @@ export default {
       this.loadData()
     },
     loadData(){
-      request.get("/product/page",{
+      this.loading = true
+      request.get("/detection/page",{
             params:{
               page:this.page,
               pageSize:this.pageSize,
               name:this.formInline.name,
-              status:this.formInline.status
+              isValid:this.formInline.status
             }
           }
       ).then(res => {
-        this.certificate=res.data.records;
-        this.total=res.data.total;
+        setTimeout(() => {
+          this.certificate=res.data.records;
+          this.total=res.data.total;
+          this.loading = false;
+        }, 600)
       })
     },
     handleCurrentChange(val) {
@@ -145,9 +161,18 @@ export default {
       this.loadData();
     },
     showDetail(item){
-            this.dialogVisible = true;
-            this.data = item;
-        },
+      this.dialogVisible = true;
+      this.loading1 = true;
+      setTimeout(() => {
+        this.data.name = item.name;
+        this.data.unity = item.unity;
+        this.data.img = item.img;
+        this.data.isValid= item.isValid;
+        this.data.director = item.director;
+        this.data.createTime = item.createTime;
+        this.loading1 = false;
+      }, 600)
+    },
   },
 }
 </script>
@@ -156,8 +181,8 @@ export default {
 .box-card{
   border: 1px solid transparent;
   border-radius: 10px;
-  background-color: #a4b990;
-  box-shadow: 3px 3px #5e8c50;
+  background-color: #90b9ad;
+  box-shadow: 3px 3px #508c7c;
   width: 250px;
   height:180px;
   margin-left:50px;
@@ -210,5 +235,4 @@ export default {
 ::v-deep .el-dialog__body {
     background: linear-gradient(90deg, #b8ecba 0%, rgba(28, 97, 234, 0) 100%);
 }
-
 </style>

@@ -2,106 +2,142 @@
   <Top class="top"/>
   <Aside class="aside"/>
     <div class="main">
-      <div class="search">
-        <el-input
-            v-model="input3"
-            placeholder="请输入查询信息"
-            class="input-with-select"
-            clearable
-            style="width:30%;margin-top: 40px;position: absolute;left: 35%;"
-
-        >
-          <template #append>
-            <el-select v-model="select" placeholder="查询种类" style="width: 115px">
-              <el-option label="编号" value="1" />
-              <el-option label="产品名" value="2" />
-            </el-select>
-          </template>
-        </el-input>
-        <el-button style="position: absolute;left: 66%;margin-top:40px" type="primary" round
-                   @click="searchInfo"
-        >查询</el-button>
+      <div class="tag" style="margin-left: 100px">
+        物流信息
       </div>
+      <div class="search">
+        <el-form :inline="true" :model="formInline" class="demo-form-inline">
+          <el-form-item>
+            <input class="input" v-model="formInline.name" placeholder="商品名称"/>
+          </el-form-item>
+          <el-form-item>
+            <div style="font-size: 17px;font-weight: bold;color: #0b5b33;font-family:cursive">状态选择：
+            </div>
+            <select class="input" style="width:100px"  v-model="formInline.status">
+              <option class="input" label="已上线" value=1></option>
+              <option class="input" label="已下线" value=0></option>
+            </select>
+          </el-form-item>
+          <el-form-item>
+            <button class="btn1" @click="onSubmit">查询</button>
+            <button class="btn1" style="margin-left: 10px" @click="reSet">重置</button>
+          </el-form-item>
+        </el-form>
+      </div>
+      <div class="table" style="margin-top: 20px;width: 1100px; margin-left: 100px;">
+        <el-table :data="logisticsData"
+                  border
+                  :cell-style="{textAlign: 'center'}"
+                  :header-row-style="headerRowStyle"
+                  :row-style="rowState"
+                  :header-cell-style="{'background':'#6a98b4',textAlign: 'center'}"
+                  width="1100">
+          <el-table-column label="物流编号" width="150">
+            <template #default="scope">
+              <span>{{ scope.row.id }}</span>
+            </template>
+          </el-table-column>
 
-      <div class="item">
+          <el-table-column label="创建时间" width="150">
+            <template #default="scope">
+              <el-icon><timer /></el-icon>
+              <span>{{ scope.row.createTime }}</span>
+            </template>
+          </el-table-column>
 
-        <div style="margin: 0 auto;width: 80%;">
-          <el-table :data="logisticsData" border style="width: 80%;margin-left: 10%">
+          <el-table-column  label="商品名称" width="150">
+            <template #default="scope">
+              <span>{{ scope.row.name}}</span>
+            </template>
+          </el-table-column>
 
-            <el-table-column prop="date" label="日期" width="120" />
-            <el-table-column prop="name" label="产品名" width="160" />
-            <el-table-column prop="company" label="供方" width="160" />
-            <el-table-column prop="destination" label="目的地" width="130" />
-            <el-table-column prop="source" label="产地" />
-            <el-table-column label="操作" >
-              <template #default="scope">
+          <el-table-column label="生产商" width="150">
+            <template #default="scope">
+              <span>{{ scope.row.company }}</span>
+            </template>
+          </el-table-column>
 
-              <el-button type="primary" @click="showDetail(scope.row)">查看物流</el-button>
-              </template>
+          <el-table-column label="产地" width="150">
+            <template #default="scope">
+              <span>{{ scope.row.area }}</span>
+            </template>
+          </el-table-column>
 
-            </el-table-column>
-          </el-table>
+          <el-table-column label="物流目的地" width="200">
+            <template #default="scope">
+              <span >{{ scope.row.address }}</span>
+            </template>
+          </el-table-column>
 
 
-
-
-
+          <el-table-column label="操作"  width="150" >
+            <template #default="scope">
+              <button class="btn" style="width: 100px" @click="showDetail(scope.row)">查看物流</button>
+            </template>
+          </el-table-column>
           <el-empty description="无结果" v-if="logisticsData.length===0" />
-        </div>
-
-        <el-dialog
-            v-model="dialogVisible"
-            title="物流信息"
-            width="30%"
-        >
-
+        </el-table>
+      </div>
+      <div style="margin-top:20px; margin-left: 400px;margin-bottom: 20px">
+        <el-pagination style="color: #00b891;font-family:cursive;font-weight: bold;"
+                       :current-page="page"
+                       :page-size="pageSize"
+                       :page-sizes="[6,8,10,12]"
+                       layout="total, sizes, prev, pager, next, jumper"
+                       :total="total"
+                       @size-change="handleSizeChange"
+                       @current-change="handleCurrentChange"
+        />
+      </div>
+    </div>
+  <div class="dialog">
+    <el-dialog
+        v-model="dialogVisible"
+        title="物流信息"
+        :visible.sync="specDlgVisible"
+        class="spec-dialog"
+        width="30%"
+        v-loading="loading"
+    >
+      <div style="height:350px;">
+        <el-scrollbar class="bor" style="height:300px;">
           <el-timeline>
             <el-timeline-item
                 v-for="(activity, index) in activities"
                 :key="index"
                 :timestamp="activity.timestamp"
-                style="margin-left: 160px"
-            >
+                style="margin-left: 20px">
               {{ activity.content }}
             </el-timeline-item>
           </el-timeline>
-          <template #footer>
-      <span class="dialog-footer">
-        <el-button @click="dialogVisible = false">取消</el-button>
-        <el-button type="primary" @click="dialogVisible = false">
-          确定
-        </el-button>
-      </span>
-          </template>
-        </el-dialog>
-
-
+          <el-empty description="无结果" v-if="activities.length===0" />
+        </el-scrollbar>
+        <div style="margin-top: 30px">
+          <button class="btn1" style="margin-left:300px; width:100px" type="primary" @click="dialogVisible = false">
+            退出
+          </button>
+        </div>
       </div>
-      <div class="page">
-        <el-pagination
-            v-model:currentPage="currentPage"
-            v-model:page-size="pageSize"
-            :page-sizes="[100, 200, 300, 400]"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="total"
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            style="margin-left: 35%"
-        />
-      </div>
+    </el-dialog>
+  </div>
 
-    </div>
 </template>
 
 <script>
 import Aside from "@/components/Aside";
 import Top from "@/components/Top";
+import request from "@/utils/request";
 
 
 export default {
   name: "Logistics",
   components: { Aside, Top },data(){
     return{
+      loading: false,
+      formInline: {
+        name:'',
+        status:'',
+      },
       select:'',
       input3:'',
       currentPage:0,
@@ -136,11 +172,18 @@ export default {
           company:'',
           destination:'',
           source:''
+        },{
+          date:'',
+          name:'苹果',
+          company:'',
+          destination:'',
+          source:''
 
-        }
-      ],activities:[
+        },
+      ],
+      activities:[
         {
-          content: 'Event start',
+          content: 'Event startgregergergerggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggr',
           timestamp: '2018-04-15',
         },
         {
@@ -151,42 +194,113 @@ export default {
           content: 'Success',
           timestamp: '2018-04-11',
         },
+        {
+          content: 'Success',
+          timestamp: '2018-04-11',
+        },   {
+          content: 'Success',
+          timestamp: '2018-04-11',
+        },   {
+          content: 'Success',
+          timestamp: '2018-04-11',
+        },   {
+          content: 'Success',
+          timestamp: '2018-04-11',
+        },
       ]
-
-
     }
   },
   methods:{
-    handleSizeChange(){
-
-    },handleCurrentChange(){
-
-    },showDetail(i){
+    headerRowStyle(args){
+      return {
+        height: '50px',
+        color:'#000303',
+        fontSize:'18px',
+        fontFamily:'cursive',
+        fontWeight:'bolder',
+      }
+    },
+    rowState(arg){
+      return {
+        color:'#347070',
+        fontWeight:'bold',
+        background: '#f6f3dc',
+        fontFamily:'cursive',
+        fontSize:"17px",
+      }
+    },
+    created(){
+      this.loadData()
+    },
+    loadData(){
+      this.loading = true
+      request.get("",{
+            params:{
+              page:this.page,
+              pageSize:this.pageSize,
+              name:this.formInline.name,
+              status:this.formInline.status
+            }
+          }
+      ).then(res => {
+        setTimeout(() => {
+          this.certificate=res.data.records;
+          this.total=res.data.total;
+          this.loading = false
+        }, 600)
+      })
+    },
+    handleSizeChange(val) {
+      this.pageSize = val
+      this.loadData()
+      console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange(val) {
+      this.page=val
+      this.loadData()
+      console.log(`当前页: ${val}`);
+    },
+    onSubmit() {
+      this.loadData();
+      console.log('submit!');
+    },
+    reSet()
+    {
+      this.formInline = {};
+      this.loadData();
+    },
+    showDetail(i){
       this.dialogVisible = true
       console.log(i)
-    },searchInfo(){
-
-    }
+    },
   }
-
 }
 </script>
 
 <style scoped>
-.search{
-  float: left;
-  width: 87%;
-  height: 100px;
-  position: relative;
+::v-deep .el-dialog {
+  border-radius: 50px;
 }
-.item {
-  float: left;
-  width:87%;
+::v-deep .el-dialog__header {
+  padding: 0 !important;
+  width: 100%;
+  height: 70px;
+  background: linear-gradient(90deg, #6a98b4 0%, rgba(28, 97, 234, 0) 100%);
 }
-
-.page {
-  float: left;
-  width:87%;
-
+::v-deep .el-dialog__title {
+  margin-left: 25px;
+  line-height: 70px;
+  color: #2d2f01;
+  font-family: cursive;
+  font-weight: bold;
+  font-size: 25px;
+}
+::v-deep .el-dialog__body {
+  background: linear-gradient(90deg, #a19e76 0%, rgba(28, 97, 234, 0) 100%);
+  font-weight: bold;
+  font-family: cursive;
+}
+.el-scrollbar__wrap {
+  overflow-x: hidden !important;
 }
 </style>

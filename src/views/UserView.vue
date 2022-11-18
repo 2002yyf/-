@@ -2,7 +2,9 @@
   <Top class="top"/>
   <Aside class="aside"/>
   <div class="main">
-
+    <div class="tag" style="margin-left: 80px">
+      用户信息
+    </div>
 <!--        <div class="search" style="margin-left:100px ">-->
 <!--            <input class="input"  style="width: 20%;height: 40px;margin-left:30%;" placeholder="请输入用户昵称"/>-->
 <!--            <button class="btn1"  style="margin-left: 20px" size="large">查询</button>-->
@@ -10,7 +12,7 @@
 <!--              <el-icon :size="25"><Bell /></el-icon>-->
 <!--            </el-badge>-->
 <!--        </div>-->
-    <div class="search" style="margin-left: 300px;margin-top: 40px">
+    <div class="search" style="margin-left: 60px;margin-top: 40px">
       <el-form :inline="true" :model="formInline" class="demo-form-inline">
         <el-form-item>
           <input class="input" style="width: 200px" v-model="formInline.name" placeholder="请输入用户昵称"/>

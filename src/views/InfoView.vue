@@ -2,6 +2,9 @@
     <Top class="top"/>
     <Aside class="aside"/>
     <div class="main">
+      <div class="tag" style="margin-left: 40px">
+        商品信息
+      </div>
       <div class="search">
         <el-form :inline="true" :model="formInline" class="demo-form-inline">
           <el-form-item>
@@ -21,8 +24,11 @@
           </el-form-item>
         </el-form>
       </div>
-      <div class="table" style="margin-top: 0">
+      <div class="table" style="margin-top: 20px">
         <el-table
+            element-loading-background="#dee7da"
+            element-loading-text="拼命加载中"
+            v-loading="loading"
             border
             :data="tableData"
             :cell-style="{textAlign: 'center'}"
@@ -94,7 +100,7 @@
                        @current-change="handleCurrentChange"
         />
       </div>
-      </div>
+    </div>
 </template>
 
 
@@ -107,6 +113,7 @@ export default {
   components: { Aside, Top },
   data() {
     return {
+      loading: false,
       formInline: {
         name:'',
         status:'',
@@ -128,7 +135,6 @@ export default {
         fontSize:'18px',
         fontFamily:'cursive',
         fontWeight:'bolder',
-        background:'#e0eed1',
       }
     },
     rowState(arg){
@@ -137,10 +143,11 @@ export default {
         fontWeight:'bold',
         background: '#dee7da',
         fontFamily:'cursive',
-        fontSize:"15px",
+        fontSize:"17px",
       }
     },
     loadData(){
+      this.loading = true;
       request.get("/product/page",{
         params:{
           page:this.page,
@@ -150,8 +157,11 @@ export default {
         }
           }
       ).then(res => {
-        this.tableData=res.data.records;
-        this.total=res.data.total;
+        setTimeout(() => {
+          this.tableData=res.data.records;
+          this.total=res.data.total;
+              this.loading = false
+        }, 600)
       })
     },
     handleSizeChange(val) {
