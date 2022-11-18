@@ -3,13 +3,40 @@
   <Aside class="aside"/>
   <div class="main">
 
-        <div class="search" style="margin-left:100px ">
-            <input class="input"  style="width: 20%;height: 40px;margin-left:30%;" placeholder="请输入用户昵称"/>
-            <button class="btn1" type="primary" round style="margin-left: 20px" size="large">查询</button>
-            <el-badge :value="application" class="item" style="margin-left: 68%;cursor:pointer;" @click="dealClick">
-              <el-icon :size="25"><Bell /></el-icon>
-            </el-badge>
-        </div>
+<!--        <div class="search" style="margin-left:100px ">-->
+<!--            <input class="input"  style="width: 20%;height: 40px;margin-left:30%;" placeholder="请输入用户昵称"/>-->
+<!--            <button class="btn1"  style="margin-left: 20px" size="large">查询</button>-->
+<!--            <el-badge :value="application" class="item" style="margin-left: 68%;cursor:pointer;" @click="dealClick">-->
+<!--              <el-icon :size="25"><Bell /></el-icon>-->
+<!--            </el-badge>-->
+<!--        </div>-->
+    <div class="search" style="margin-left: 300px;margin-top: 40px">
+      <el-form :inline="true" :model="formInline" class="demo-form-inline">
+        <el-form-item>
+          <input class="input" style="width: 200px" v-model="formInline.name" placeholder="请输入用户昵称"/>
+        </el-form-item>
+        <el-form-item>
+          <div style="font-size: 17px;font-weight: bold;color: #0b5b33;font-family:cursive">状态：
+          </div>
+          <select class="input" style="width:80px"  v-model="formInline.status">
+            <option class="input" label="删除" value=1></option>
+            <option class="input" label="未删除" value=0></option>
+          </select>
+        </el-form-item>
+        <el-form-item>
+          <div style="font-size: 17px;font-weight: bold;color: #0b5b33;font-family:cursive">身份：
+          </div>
+          <select class="input" style="width:100px"  v-model="formInline.identity">
+            <option class="input" label="普通用户" value="1"></option>
+            <option class="input" label="产品提供方" value=0></option>
+          </select>
+        </el-form-item>
+        <el-form-item>
+          <button class="btn1" @click="onSubmit">查询</button>
+          <button class="btn1" style="margin-left: 10px" @click="reSet">重置</button>
+        </el-form-item>
+      </el-form>
+    </div>
 <div class="table" style="margin-left: 150px">
   <el-table
       :data="tableData"
@@ -121,6 +148,7 @@
 <script>
 import Aside from '@/components/Aside.vue'
 import Top from '@/components/Top.vue'
+import request from "@/utils/request";
 export default {
   name: "UserView",
   components:{
@@ -132,7 +160,11 @@ export default {
       page:1,
       pageSize:8,
       total: 0,
-
+      formInline: {
+        name:'',
+        status:'',
+        identity:''
+      },
       confirmIndex:0,
       centerDialogVisible:false,
       application:0,
@@ -140,7 +172,8 @@ export default {
         name:"",
         file:"",
         text:""
-      },staff:[
+      },
+      staff:[
         {
           name:"张三",
           pic:"https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
@@ -202,8 +235,32 @@ export default {
       this.loadData()
       console.log(`当前页: ${val}`);
     },
-
-
+    created(){
+      this.loadData()
+    },
+    loadData(){
+      request.get("/product/page",{
+            params:{
+              page:this.page,
+              pageSize:this.pageSize,
+              name:this.formInline.name,
+              status:this.formInline.status
+            }
+          }
+      ).then(res => {
+        this.certificate=res.data.records;
+        this.total=res.data.total;
+      })
+    },
+    onSubmit() {
+      this.loadData();
+      console.log('submit!');
+    },
+    reSet()
+    {
+      this.formInline = {};
+      this.loadData();
+    },
     openDraw(row){
       this.drawer = true
       console.log(row)
