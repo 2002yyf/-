@@ -5,13 +5,6 @@
     <div class="tag" style="margin-left: 80px">
       用户信息
     </div>
-<!--        <div class="search" style="margin-left:100px ">-->
-<!--            <input class="input"  style="width: 20%;height: 40px;margin-left:30%;" placeholder="请输入用户昵称"/>-->
-<!--            <button class="btn1"  style="margin-left: 20px" size="large">查询</button>-->
-<!--            <el-badge :value="application" class="item" style="margin-left: 68%;cursor:pointer;" @click="dealClick">-->
-<!--              <el-icon :size="25"><Bell /></el-icon>-->
-<!--            </el-badge>-->
-<!--        </div>-->
     <div class="search" style="margin-left: 60px;margin-top: 40px">
       <el-form :inline="true" :model="formInline" class="demo-form-inline">
         <el-form-item>
@@ -39,6 +32,7 @@
         </el-form-item>
       </el-form>
     </div>
+
 <div class="table" style="margin-left: 150px">
   <el-table
       :data="tableData"
@@ -49,19 +43,19 @@
       :row-style="rowState"
       :header-cell-style="{'background':'#8c9d47',textAlign: 'center'}"
   >
-    <el-table-column prop="identity" label="身份"  width="180" />
-    <el-table-column prop="name" label="昵称" width="180" />
-    <el-table-column prop="registerTime" label="注册日期" sortable/>
+    <el-table-column prop="role" label="身份"  width="180" />
+    <el-table-column prop="userName" label="昵称" width="180" />
+    <el-table-column prop="createTime" label="注册日期" sortable/>
     <el-table-column label="公司人员" >
       <template #default="scope">
         <span v-if="scope.row.identity ==='普通用户'">无</span>
-        <el-icon :size="20"  v-if="scope.row.identity === '产品供方'" @click = "openDraw(scope.row)"><User /></el-icon>
+        <el-icon :size="20"  v-if="scope.row.role === '产品供方'" @click = "openDraw(scope.row)"><User /></el-icon>
       </template>
     </el-table-column>>
     <el-table-column label="状态" width="180" >
       <template #default="scope">
         <el-switch
-            v-model="scope.row.status"
+            v-model="scope.row.isDelete"
             class="ml-2"
             style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
             @change="change(scope.$index)"
@@ -167,14 +161,14 @@ export default {
         status:'',
         identity:''
       },
-      confirmIndex:0,
-      centerDialogVisible:false,
-      application:0,
+      tableData:[
+      ],
       userForm:{
         name:"",
         file:"",
         text:""
       },
+      centerDialogVisible:false,
       staff:[
         {
           name:"张三",
@@ -192,19 +186,6 @@ export default {
       ],
       drawer:false,
       dialogVisible:false,
-      tableData:[
-        {
-          identity:'普通用户',
-          name:'张三',
-          registerTime:'2022-10-11',
-          status:true
-        },{
-          identity:'产品供方',
-          name:'开心牧场',
-          registerTime:'2022-10-12',
-          status:false
-        },
-      ]
     }
   },
   methods:{
@@ -241,16 +222,16 @@ export default {
       this.loadData()
     },
     loadData(){
-      request.get("/product/page",{
+      request.get("/user/page",{
             params:{
               page:this.page,
               pageSize:this.pageSize,
-              name:this.formInline.name,
-              status:this.formInline.status
+              userName:this.formInline.name,
+              isDelete:this.formInline.status
             }
           }
       ).then(res => {
-        this.certificate=res.data.records;
+        this.tableData=res.data.records;
         this.total=res.data.total;
       })
     },
@@ -267,12 +248,11 @@ export default {
       this.drawer = true
       console.log(row)
     },
-    dealClick(){
-      this.centerDialogVisible = true
-    },change(index){
+    change(index){
       this.dialogVisible = true
       this.confirmIndex = index;
-    },rollbackModify(){
+    },
+    rollbackModify(){
       this.dialogVisible = false
       this.tableData[this.confirmIndex].status = !this.tableData[this.confirmIndex].status
     }

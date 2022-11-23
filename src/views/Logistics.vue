@@ -11,12 +11,7 @@
             <input class="input" v-model="formInline.name" placeholder="商品名称"/>
           </el-form-item>
           <el-form-item>
-            <div style="font-size: 17px;font-weight: bold;color: #0b5b33;font-family:cursive">状态选择：
-            </div>
-            <select class="input" style="width:100px"  v-model="formInline.status">
-              <option class="input" label="已上线" value=1></option>
-              <option class="input" label="已下线" value=0></option>
-            </select>
+            <input class="input" v-model="formInline.name" placeholder="物流目的地"/>
           </el-form-item>
           <el-form-item>
             <button class="btn1" @click="onSubmit">查询</button>
