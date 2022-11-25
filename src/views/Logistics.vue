@@ -1,6 +1,7 @@
 <template>
   <Top class="top"/>
   <Aside class="aside"/>
+  <icon class="icon"/>
     <div class="main">
       <div class="tag" style="margin-left: 100px">
         物流信息
@@ -122,11 +123,11 @@
 import Aside from "@/components/Aside";
 import Top from "@/components/Top";
 import request from "@/utils/request";
-
+import Icon from "@/components/icon";
 
 export default {
   name: "Logistics",
-  components: { Aside, Top },data(){
+  components: { Aside, Top,Icon},data(){
     return{
       loading: false,
       formInline: {

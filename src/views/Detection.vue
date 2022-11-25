@@ -1,6 +1,7 @@
 <template>
   <Top class="top"/>
   <Aside class="aside"/>
+  <icon class="icon"/>
     <div class="main">
       <div class="tag" style="margin-left: 80px">
            商品检测
@@ -93,9 +94,10 @@
 import Aside from '@/components/Aside.vue'
 import Top from '@/components/Top.vue'
 import request from "@/utils/request";
+import Icon from "@/components/icon";
 export default {
   name: "Detection",
-  components: { Aside, Top },
+  components: {Icon, Aside, Top },
   data() {
     return {
       loading: false,

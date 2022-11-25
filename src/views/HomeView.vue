@@ -1,6 +1,7 @@
 <template>
   <Top class="top"/>
   <Aside class="aside"/>
+  <icon class="icon"/>
     <div class="main" style="display: flex;flex-wrap:wrap;">
       <el-card shadow="hover" style="width:25%;height:20%;margin-top: 100px;margin-left: 70px">
         <div style="display: flex;justify-content: center;height: 30px;font-size: 25px;align-items: center">
@@ -73,13 +74,15 @@
 <script>
 import Aside from '@/components/Aside.vue'
 import Top from '@/components/Top.vue'
+import Icon from "@/components/icon";
 import {ElNotification} from "element-plus";
 import {h} from "vue";
 export default {
   name: 'HomeView',
   components: {
     Aside,
-    Top
+    Top,
+    Icon
   },data(){
     return{
       user:0,

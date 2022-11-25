@@ -1,28 +1,42 @@
 .top{
     position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 65px;
-    background-color: #f1faee;
+    left: 220px;
+    right: 10px;
+    top: 10px;
+    bottom: 5px;
+    height: 80px;
+    /*background-color: #eee7d4;*/
+    /*border-radius: 15px 15px;*/
+    /*border:2px solid #decdb8;*/
+}
+.icon{
+    top:10px;
+    left:10px;
+    width:200px;
+    height: 70px;
 }
 .aside{
     position: absolute;
-    width: 220px;
-    top:65px;
-    left: 0;
-    bottom: 0;
-    background-color: #58814d
+    width: 200px;
+    top:90px;
+    bottom: 10px;
+    left: 10px;
+    background-color: #3b856a;
+    border-radius: 15px 15px;
+    border: 2px solid #234d3e;
 }
 .main{
     position: absolute;
-    top:65px;
+    top:90px;
     left: 220px;
-    right: 0;
-    bottom: 0;
+    right: 10px;
+    bottom: 10px;
     overflow-y: auto;
     overflow-x: auto;
-    background-color: #ced7cc;
+    background-color: rgba(194, 220, 172, 0.8);
+    padding: 15px;
+    border-radius: 15px 15px;
+    border: 2px solid rgba(172, 224, 138, 0.96);
 }
 .input{
     width:130px;
@@ -37,16 +51,9 @@
     font-family:cursive;
     color:#6a6c0f;
 }
-
-.input::placeholder{
-    font-weight: bolder;
-    color:  #206c0f;
-    font-size:16px ;
-    filter: brightness(1.2);
-}
 .input:hover {
     filter: brightness(1.2);
-    color:  #206c0f;
+    /*color:  #206c0f;*/
     font-weight: bold;
 
 }
@@ -60,11 +67,13 @@
     font-family:cursive;
     font-weight: bold;
     font-size:16px;
+    background-color: #acb787;
     color:#5b5e0b;
 }
 .btn1:hover {
-    filter: brightness(1.2);
-    color: #206c0f;
+    /*filter: brightness(2.2);*/
+    background-color: #cdde9e;
+    color:#5b5e0b;
 }
 .btn {
     width: 55px;
@@ -74,12 +83,12 @@
     border-radius: 8px;
     display: inline-block;
     margin-left:10px;
-
+    background-color: #adeea1;
 }
-.btn:hover {
-    filter: brightness(1.2);
-    color: #6a6c0f;
-}
+/*.btn:hover {*/
+/*    !*filter: brightness(1.2);*!*/
+/*    color: #6a6c0f;*/
+/*}*/
 .tag{
     margin-top: 30px;
     line-height: 40px;

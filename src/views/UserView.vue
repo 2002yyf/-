@@ -1,6 +1,7 @@
 <template>
   <Top class="top"/>
   <Aside class="aside"/>
+  <icon class="icon"/>
   <div class="main">
     <div class="tag" style="margin-left: 80px">
       用户信息
@@ -52,15 +53,8 @@
         <el-icon :size="20"  v-if="scope.row.role === '产品供方'" @click = "openDraw(scope.row)"><User /></el-icon>
       </template>
     </el-table-column>>
-    <el-table-column label="状态" width="180" >
-      <template #default="scope">
-        <el-switch
-            v-model="scope.row.isDelete"
-            class="ml-2"
-            style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
-            @change="change(scope.$index)"
-        />
-      </template>
+    <el-table-column label="操作" width="180">
+      <button class="btn" @click="handleDel(row)">删除</button>
     </el-table-column>
   </el-table>
 </div>
@@ -76,8 +70,8 @@
                      @current-change="handleCurrentChange"
       />
     </div>
-
   </div>
+
   <el-drawer v-model="drawer" title="员工信息" :with-header="false">
     <el-card v-for="(staff,i) in staff" style="margin-top: 40px;height: 20%;">
       <div style="width: 100%;height: 100%;display: flex">
@@ -145,11 +139,14 @@
 import Aside from '@/components/Aside.vue'
 import Top from '@/components/Top.vue'
 import request from "@/utils/request";
+import {ElMessageBox} from "element-plus";
+import Icon from "@/components/icon";
 export default {
   name: "UserView",
   components:{
     Aside,
-    Top
+    Top,
+    Icon
   },
   data(){
     return{
@@ -188,6 +185,9 @@ export default {
       dialogVisible:false,
     }
   },
+  created(){
+    this.loadData()
+  },
   methods:{
     headerRowStyle(args){
       return {
@@ -211,12 +211,10 @@ export default {
     handleSizeChange(val) {
       this.pageSize = val
       this.loadData()
-      console.log(`每页 ${val} 条`);
     },
     handleCurrentChange(val) {
       this.page=val
       this.loadData()
-      console.log(`当前页: ${val}`);
     },
     created(){
       this.loadData()
@@ -226,8 +224,8 @@ export default {
             params:{
               page:this.page,
               pageSize:this.pageSize,
-              userName:this.formInline.name,
-              isDelete:this.formInline.status
+              // userName:this.formInline.name,
+              // isDelete:this.formInline.status
             }
           }
       ).then(res => {
@@ -237,12 +235,24 @@ export default {
     },
     onSubmit() {
       this.loadData();
-      console.log('submit!');
     },
     reSet()
     {
       this.formInline = {};
       this.loadData();
+    },
+    handleDel(val) {
+      ElMessageBox.confirm("你确定删除这个农产品的信息吗?", "提示", {
+        confirmButtonText: "确认",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+          .then(() => {
+            method.handleSure(val);
+          })
+          .catch(() => {
+            // catch error
+          });
     },
     openDraw(row){
       this.drawer = true

@@ -38,11 +38,11 @@
           </el-form-item>
         </el-form>
         <div class="action">
-          <div class="btn"  @click="login">登录</div>
+          <div class="btn2"  @click="login">登录</div>
           <div
-              class="btn"
+              class="btn2"
               @click="this.$router.push('register')"
-              style="margin-left: 10px"
+              style="margin-left: 10px;"
           >
             注册
           </div>
@@ -62,9 +62,6 @@ export default {
       form: {},
     }
   },
-  // created() {
-  //   sessionStorage.removeItem("user")
-  // },
   methods: {
     login() {
       this.$refs['form'].validate((valid) => {
@@ -84,6 +81,7 @@ export default {
                 message: "登录成功"
               })
               localStorage.setItem("userinfo", JSON.stringify(res.data))  // 缓存用户信息
+              console.log(res.data)
               this.$router.push("home")  //登录成功之后进行页面的跳转，跳转到主页
             }
             else {
@@ -176,18 +174,20 @@ export default {
   display: flex;
   justify-content: center;
 }
- .btn {
+ .btn2 {
   width: 60%;
   text-transform: uppercase;
-  border: 2px solid #6fc462;
+  border: 2px solid #71c764;
   text-align: center;
   line-height: 50px;
   border-radius: 15px;
   cursor: pointer;
   font-weight: bold;
+   background-color: #3d6b35;
 }
- .btn:hover {
-  filter: brightness(3.1);
+ .btn2:hover {
+   filter: brightness(1.3);
+   background-color: #3d6b35;
 }
 .form-wrapper .icon-wrapper {
   text-align: center;

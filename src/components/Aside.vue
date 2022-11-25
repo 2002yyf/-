@@ -1,16 +1,14 @@
 <template>
-  <div>
+  <div style="padding-top:20px">
     <el-menu
-        active-text-color="yellow"
-        background-color="#58814d"
+        active-text-color="white"
+        background-color="#3b856a"
         class="el-menu-vertical-demo"
         text-color="#fff"
         @open="handleOpen"
         @close="handleClose"
         style="border-right: 0"
     >
-      <div style="height: 20px">
-      </div>
       <el-menu-item index="1"  @click="this.$router.push('/home')">
         <template #title>
           <el-icon><House /></el-icon>
@@ -68,11 +66,22 @@ export default {
   name: "Aside",
   data(){
     return{
-
+      information:{
+        img:'',
+        userName:'',
+      }
     }
   },
+  created() {
+    this.GetInformation();
+  },
   methods:{
-
+      GetInformation(){
+        let userinfo = JSON.parse(localStorage.getItem('userinfo'))
+        this.information.userName=userinfo.userName;
+        this.information.img=userinfo.img;
+        console.info(userinfo)
+      }
   }
 }
 </script>
@@ -82,5 +91,10 @@ export default {
   letter-spacing: 8px;
   font-weight: bold;
   font-size: 15px;
+}
+img{
+  height: 80px;
+  width: 80px;
+  margin-left: 10px;
 }
 </style>

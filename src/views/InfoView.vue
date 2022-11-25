@@ -1,6 +1,7 @@
 <template>
     <Top class="top"/>
     <Aside class="aside"/>
+  <icon class="icon"/>
     <div class="main">
       <div class="tag" style="margin-left: 40px">
         商品信息
@@ -108,9 +109,10 @@
 import Aside from '@/components/Aside.vue'
 import Top from '@/components/Top.vue'
 import request from "@/utils/request";
+import Icon from "@/components/icon";
 export default {
   name: 'InfoView',
-  components: { Aside, Top },
+  components: { Aside, Top,Icon },
   data() {
     return {
       loading: false,

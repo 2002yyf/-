@@ -1,6 +1,7 @@
 <template>
   <Top class="top"/>
   <Aside class="aside"/>
+  <icon class="icon"/>
   <div class="main">
       <div class="search">
         <button class="btn1" style="width: 140px" @click="handleNew(row)">新增生长信息</button>
@@ -68,9 +69,10 @@ import Dialog from './dialog1.vue'
 import Detail from "./detail.vue"
 import { reactive, toRefs } from "vue";
 import {ElMessageBox} from "element-plus";
+import Icon from "@/components/icon";
 export default {
   name: 'Planting2',
-  components: { Aside, Top ,Detail ,Dialog},
+  components: { Aside, Top ,Detail ,Dialog,Icon},
   setup() {
     const data = reactive({
       dialogShow: false, // 新增/编辑弹框
