@@ -41,9 +41,9 @@
           </el-form-item>
         </el-form>
         <div class="action">
-          <div class="btn" @click="register">注册</div>
+          <div class="btn2" @click="register">注册</div>
           <div
-            class="btn"
+            class="btn2"
             @click="this.$router.push('/')"
             style="margin-left: 10px"
           >
@@ -218,5 +218,20 @@ export default {
 }
 .form-wrapper .icon-wrapper i:hover {
   opacity: 1;
+}
+.btn2 {
+  width: 60%;
+  text-transform: uppercase;
+  border: 2px solid #71c764;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #3d6b35;
+}
+.btn2:hover {
+  filter: brightness(1.3);
+  background-color: #3d6b35;
 }
 </style>
