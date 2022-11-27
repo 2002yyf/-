@@ -1,7 +1,6 @@
 <template>
   <Top class="top"/>
   <Aside class="aside"/>
-  <icon class="icon"/>
   <div class="main">
       <div class="search">
         <button class="btn1" style="width: 140px" @click="handleNew(row)">新增生长信息</button>

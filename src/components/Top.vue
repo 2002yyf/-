@@ -1,35 +1,39 @@
 <template>
   <div style="height: 70px;">
-    <div style="width:1050px;margin-left: 10px;height: 70px;float: left;margin-top: 20px;font-family: Cambria,fantasy;font-size: 30px;font-weight: bolder;color: #0b5b33">
-      Traceability of agricultural products
+    <div style="float: left">
+      <icon/>
     </div>
-    <div style="height: 70px;float: left">
-      <div style="width:80px;margin-top:15px;float:left">
-        <el-icon size="25px" @click="logout" color="#234d3e"><Avatar /></el-icon>
-        <el-icon size="25px" @click="logout" color="#234d3e" style="margin-left: 10px"><BellFilled /></el-icon>
+      <div style="float: left;width:1050px;height: 70px;margin-left:30px;float: left;margin-top: 25px;font-family: cursive;font-size: 50px;font-weight: bolder;color: #5b500b">
+        农 产 品 溯 源 系 统
       </div>
-      <!--  <div style="width:70px;height40px;margin-left:1000px;float:right;background-color: #0b5b33">-->
-      <!--    <button class="btn2" style="margin-right: 20px;" @click="logout">退出登录</button>-->
-      <!--  </div>-->
-      <div style=" width:120px;margin-top: 10px;float:left">
-        <div style="float:left;height: 20px;text-align: center;font-family: cursive;font-weight: bolder;font-size: 15px;color: #303038">
-          {{information.userName}}
+      <div style="height: 70px;float: left">
+        <div style="width:80px;margin-top:25px;float:left">
+          <el-icon size="25px" @click="logout" color="#234d3e"><Avatar /></el-icon>
+          <el-icon size="25px" @click="logout" color="#234d3e" style="margin-left: 10px"><BellFilled /></el-icon>
         </div>
-        <img src="https://img.zcool.cn/community/01972c5f110b9fa801206621eba569.png@1280w_1l_2o_100sh.png">
-        <!--          <img  :src="information.img" style="height: 40px;border-radius: 50%">-->
+        <!--  <div style="width:70px;height40px;margin-left:1000px;float:right;background-color: #0b5b33">-->
+        <!--    <button class="btn2" style="margin-right: 20px;" @click="logout">退出登录</button>-->
+        <!--  </div>-->
+        <div style=" width:110px;margin-top: 15px;float:left">
+          <div style="float:left;height: 20px;text-align: center;font-family: cursive;font-weight: bolder;font-size: 15px;color: #303038">
+            {{information.userName}}
+          </div>
+          <img src="https://img.zcool.cn/community/01972c5f110b9fa801206621eba569.png@1280w_1l_2o_100sh.png">
+          <!--          <img  :src="information.img" style="height: 40px;border-radius: 50%">-->
+        </div>
+        <div style="margin-top:25px;float:left">
+          <el-icon size="25px" @click="logout" color="#234d3e"><Setting /></el-icon>
+        </div>
       </div>
-      <div style="margin-top:15px;float:left">
-        <el-icon size="25px" @click="logout" color="#234d3e"><Setting /></el-icon>
-      </div>
-    </div>
   </div>
 </template>
 
 
 <script>
 import {ElMessageBox} from "element-plus";
-
+import Icon from "@/components/icon";
 export default {
+  components: {Icon},
   name: "Top",
   data(){
     return{

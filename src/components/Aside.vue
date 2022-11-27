@@ -2,7 +2,7 @@
   <div style="padding-top:20px">
     <el-menu
         active-text-color="white"
-        background-color="#3b856a"
+        background-color="#5d4e2a"
         class="el-menu-vertical-demo"
         text-color="#fff"
         @open="handleOpen"

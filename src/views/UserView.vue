@@ -1,12 +1,11 @@
 <template>
   <Top class="top"/>
   <Aside class="aside"/>
-  <icon class="icon"/>
   <div class="main">
-    <div class="tag" style="margin-left: 80px">
+    <div class="tag">
       用户信息
     </div>
-    <div class="search" style="margin-left: 60px;margin-top: 40px">
+    <div class="search" style="margin-left: 50px;margin-top: 40px">
       <el-form :inline="true" :model="formInline" class="demo-form-inline">
         <el-form-item>
           <input class="input" style="width: 200px" v-model="formInline.name" placeholder="请输入用户昵称"/>
@@ -23,8 +22,8 @@
           <div style="font-size: 17px;font-weight: bold;color: #0b5b33;font-family:cursive">身份：
           </div>
           <select class="input" style="width:100px"  v-model="formInline.identity">
-            <option class="input" label="普通用户" value="1"></option>
-            <option class="input" label="产品提供方" value=0></option>
+            <option class="input" label="普通用户" value=0></option>
+            <option class="input" label="产品提供方" value=2></option>
           </select>
         </el-form-item>
         <el-form-item>
@@ -34,26 +33,26 @@
       </el-form>
     </div>
 
-<div class="table" style="margin-left: 150px">
+<div  style="margin-left: 250px;width:750px;">
   <el-table
       :data="tableData"
       :default-sort="{ prop: 'date', order: 'descending' }"
-      style="width: 60%;margin-left: 10%;"
       :cell-style="{textAlign: 'center'}"
       :header-row-style="headerRowStyle"
       :row-style="rowState"
       :header-cell-style="{'background':'#8c9d47',textAlign: 'center'}"
   >
-    <el-table-column prop="role" label="身份"  width="180" />
-    <el-table-column prop="userName" label="昵称" width="180" />
-    <el-table-column prop="createTime" label="注册日期" sortable/>
-    <el-table-column label="公司人员" >
-      <template #default="scope">
-        <span v-if="scope.row.identity ==='普通用户'">无</span>
-        <el-icon :size="20"  v-if="scope.row.role === '产品供方'" @click = "openDraw(scope.row)"><User /></el-icon>
-      </template>
-    </el-table-column>>
-    <el-table-column label="操作" width="180">
+    <el-table-column prop="role" label="身份"  width="150" />
+    <el-table-column prop="userName" label="昵称" width="150" />
+    <el-table-column prop="createTime" label="注册日期" width="200"/>
+    <el-table-column prop="isDelete" label="状态" width="100"/>
+<!--    <el-table-column label="公司人员" width="180">-->
+<!--      <template #default="scope">-->
+<!--        <span v-if="scope.row.identity ==='普通用户'">无</span>-->
+<!--        <el-icon :size="20"  v-if="scope.row.role === '产品供方'" @click = "openDraw(scope.row)"><User /></el-icon>-->
+<!--      </template>-->
+<!--    </el-table-column>>-->
+    <el-table-column label="操作" width="150">
       <button class="btn" @click="handleDel(row)">删除</button>
     </el-table-column>
   </el-table>
@@ -224,8 +223,9 @@ export default {
             params:{
               page:this.page,
               pageSize:this.pageSize,
-              // userName:this.formInline.name,
-              // isDelete:this.formInline.status
+              userName:this.formInline.name,
+              isDelete:this.formInline.status,
+              role:this.formInline.identity
             }
           }
       ).then(res => {

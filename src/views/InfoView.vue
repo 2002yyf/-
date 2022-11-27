@@ -1,9 +1,8 @@
 <template>
     <Top class="top"/>
     <Aside class="aside"/>
-  <icon class="icon"/>
     <div class="main">
-      <div class="tag" style="margin-left: 40px">
+      <div class="tag">
         商品信息
       </div>
       <div class="search">
@@ -36,7 +35,7 @@
             :header-row-style="headerRowStyle"
             :row-style="rowState"
             :header-cell-style="{'background':'#8c9d47',textAlign: 'center'}"
-            width="1640"
+            width="1500"
         >
           <el-table-column  label="产品编号" width="100">
             <template #default="scope">
@@ -57,37 +56,37 @@
           </el-table-column>
 
 
-          <el-table-column label="上传单位" width="220">
+          <el-table-column label="上传单位" width="300">
             <template #default="scope">
                 <span >{{ scope.row.company }}</span>
             </template>
           </el-table-column>
 
 
-          <el-table-column label="地区" width="110">
+          <el-table-column label="地区" width="150">
             <template #default="scope">
                 <span>{{ scope.row.area }}</span>
             </template>
           </el-table-column>
 
-          <el-table-column label="生产时间" width="200">
+          <el-table-column label="生产时间" width="220">
             <template #default="scope">
                 <el-icon><timer /></el-icon>
                 <span>{{ scope.row.createTime }}</span>
             </template>
           </el-table-column>
 
-          <el-table-column label="上传时间" width="200">
+          <el-table-column label="上传时间" width="220">
             <template #default="scope">
                 <el-icon><timer /></el-icon>
                 <span>{{ scope.row.updateTime }}</span>
             </template>
           </el-table-column>
-          <el-table-column label="图片" width="150">
-            <template #default="scope">
-              <img  :src="scope.row.image" style="width: 70px;height: 70px">
-            </template>
-          </el-table-column>
+<!--          <el-table-column label="图片" width="150">-->
+<!--            <template #default="scope">-->
+<!--              <img  :src="scope.row.image" style="width: 70px;height: 70px">-->
+<!--            </template>-->
+<!--          </el-table-column>-->
         </el-table>
       </div>
       <div style="margin-top:20px; margin-left: 400px;margin-bottom: 20px">

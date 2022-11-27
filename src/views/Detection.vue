@@ -1,9 +1,8 @@
 <template>
   <Top class="top"/>
   <Aside class="aside"/>
-  <icon class="icon"/>
     <div class="main">
-      <div class="tag" style="margin-left: 80px">
+      <div class="tag">
            商品检测
       </div>
       <div class="search">

@@ -1,42 +1,40 @@
 .top{
     position: absolute;
-    left: 220px;
+    left: 10px;
     right: 10px;
     top: 10px;
     bottom: 5px;
     height: 80px;
-    /*background-color: #eee7d4;*/
-    /*border-radius: 15px 15px;*/
-    /*border:2px solid #decdb8;*/
-}
-.icon{
-    top:10px;
-    left:10px;
-    width:200px;
-    height: 70px;
+    border-radius: 15px 15px 0px 0px;
+    border:1px solid #5d4e2a;
+    box-shadow: darkgrey 10px 10px 30px 5px;
+    background: linear-gradient(90deg, #dae3c0 0%, rgba(28, 97, 234, 0) 100%)
 }
 .aside{
     position: absolute;
     width: 200px;
-    top:90px;
+    top:80px;
     bottom: 10px;
     left: 10px;
-    background-color: #3b856a;
-    border-radius: 15px 15px;
-    border: 2px solid #234d3e;
+    background-color: #5d4e2a;
+    /*background-color: #3b856a;*/
+    border-radius: 0px 0px 0px 15px;
+    border: 2px solid #6e3239;
+    box-shadow: darkgrey 10px 10px 30px 5px
 }
 .main{
     position: absolute;
-    top:90px;
-    left: 220px;
+    top:80px;
+    left: 210px;
     right: 10px;
     bottom: 10px;
     overflow-y: auto;
     overflow-x: auto;
-    background-color: rgba(194, 220, 172, 0.8);
     padding: 15px;
-    border-radius: 15px 15px;
-    border: 2px solid rgba(172, 224, 138, 0.96);
+    border-radius: 0px 0px 15px 0px;
+    border: 1px solid #5d4e2a;
+    box-shadow: darkgrey 10px 10px 30px 5px;
+
 }
 .input{
     width:130px;
@@ -98,7 +96,7 @@
     font-family:cursive;
     font-weight: bold;
     font-size:22px;
-    background: linear-gradient(90deg, #9cb46a 0%, rgba(28, 97, 234, 0) 100%);
+    /*background: linear-gradient(90deg, #9cb46a 0%, rgba(28, 97, 234, 0) 100%);*/
     color: #111111;
 }
 .search{
@@ -109,8 +107,8 @@
     display: inline-block;
 }
 .table{
-    width:1230px;
-    margin-left: 40px;
+    width:1240px;
+    margin-left: 15px;
     margin-top: 20px;
 }
 .el-loading-spinner .path{

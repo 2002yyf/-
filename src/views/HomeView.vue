@@ -1,70 +1,107 @@
 <template>
   <Top class="top"/>
   <Aside class="aside"/>
-  <icon class="icon"/>
     <div class="main" style="display: flex;flex-wrap:wrap;">
-      <el-card shadow="hover" style="width:25%;height:20%;margin-top: 100px;margin-left: 70px">
-        <div style="display: flex;justify-content: center;height: 30px;font-size: 25px;align-items: center">
-          <el-icon  style="margin-right: 15px;"><User /></el-icon>
-          {{user}}
-        </div>
-        <div style="opacity:80%;font-size: 25px;margin-top: 30px;text-align: center">
-          普通用户数量
-        </div>
-      </el-card>
-
-
-      <el-card shadow="hover" style="width:25%;height:20%;margin-top: 100px;margin-left: 100px">
-        <div style="display: flex;justify-content: center;height: 30px;font-size: 25px;align-items: center">
-          <el-icon  style="margin-right: 15px;"><Van /></el-icon>
-          {{provider}}
-        </div>
-        <div style="opacity:80%;font-size: 25px;margin-top: 30px;text-align: center">
-          产品供方数量
+      <el-card shadow="hover" class="card" style="margin-top: 100px;margin-left: 50px;background: linear-gradient(90deg, #9cb46a 0%, rgba(28, 97, 234, 0) 100%)">
+        <div>
+          <div style="width: 70px;height: 70px;float:left;">
+            <el-icon size="70px"><User /></el-icon>
+          </div>
+          <div style="width: 180px;height: 90px;float:left;margin-left: 30px;text-align: center">
+            <div style="font-family: cursive;font-weight: bold;font-size: 40px;">
+              {{user}}
+            </div>
+            <div style="font-weight: bold;margin-top:40px;font-size: 30px">
+              普通用户数量
+            </div>
+          </div>
         </div>
       </el-card>
 
 
-      <el-card shadow="hover" style="width:25%;height:20%;margin-top: 100px;margin-left: 100px">
-        <div style="display: flex;justify-content: center;height: 30px;font-size: 25px;align-items: center">
-          <el-icon  style="margin-right: 15px;"><PieChart /></el-icon>
-          {{kind}}
+      <el-card shadow="hover" class="card"  style="margin-top: 100px;margin-left: 50px;background: linear-gradient(90deg, #71b46a 0%, rgba(28, 97, 234, 0) 100%)">
+        <div>
+          <div style="width: 70px;height: 70px;float:left;">
+            <el-icon size="70px"><Van /></el-icon>
+          </div>
+          <div style="width: 180px;height: 90px;float:left;margin-left: 30px;text-align: center">
+            <div style="font-family: cursive;font-weight: bold;font-size: 40px;">
+              {{user}}
+            </div>
+            <div style="font-weight: bold;margin-top:40px;font-size: 30px">
+              产品供方数量
+            </div>
+          </div>
         </div>
-        <div style="opacity:80%;font-size: 25px;margin-top: 30px;text-align: center">
-          产品种类数目
+
+      </el-card>
+
+
+      <el-card shadow="hover" class="card"  style="margin-top: 100px;margin-left: 50px;background: linear-gradient(90deg, #b49f6a 0%, rgba(28, 97, 234, 0) 100%)">
+          <div>
+            <div style="width: 70px;height: 70px;float:left;">
+              <el-icon size="70px"><PieChart /></el-icon>
+            </div>
+            <div style="width: 180px;height: 90px;float:left;margin-left: 30px;text-align: center">
+              <div style="font-family: cursive;font-weight: bold;font-size: 40px;">
+                {{user}}
+              </div>
+              <div style="font-weight: bold;margin-top:40px;font-size: 30px">
+                产品种类数目
+              </div>
+            </div>
+          </div>
+
+      </el-card>
+
+
+      <el-card shadow="hover" class="card"  style="margin-top: 50px;margin-left: 50px;background: linear-gradient(90deg, #6aa3b4 0%, rgba(28, 97, 234, 0) 100%)">
+        <div>
+          <div style="width: 70px;height: 70px;float:left;">
+            <el-icon size="70px"><Document /></el-icon>
+          </div>
+          <div style="width: 180px;height: 90px;float:left;margin-left: 30px;text-align: center">
+            <div style="font-family: cursive;font-weight: bold;font-size: 40px;">
+              {{user}}
+            </div>
+            <div style="font-weight: bold;margin-top:40px;font-size: 30px">
+              待审批数量
+            </div>
+          </div>
         </div>
       </el-card>
 
 
-      <el-card shadow="hover" style="width:25%;height:20%;margin-top: 100px;margin-left: 70px">
-        <div style="display: flex;justify-content: center;height: 30px;font-size: 25px;align-items: center">
-          <el-icon  style="margin-right: 15px;"><Document /></el-icon>
-          {{waiting}}
-        </div>
-        <div style="opacity:80%;font-size: 25px;margin-top: 30px;text-align: center">
-          待审批产品数量
-        </div>
-      </el-card>
-
-
-      <el-card shadow="hover" style="width:25%;height:20%;margin-top: 100px;margin-left: 100px">
-        <div style="display: flex;justify-content: center;height: 30px;font-size: 25px;align-items: center">
-          <el-icon  style="margin-right: 15px;"><FolderChecked /></el-icon>
-          {{online}}
-        </div>
-        <div style="opacity:80%;font-size: 25px;margin-top: 30px;text-align: center">
-          上线产品数量
+      <el-card shadow="hover" class="card"  style="margin-top: 50px;margin-left: 50px;background: linear-gradient(90deg, #856ab4 0%, rgba(28, 97, 234, 0) 100%)">
+        <div>
+          <div style="width: 70px;height: 70px;float:left;">
+            <el-icon size="70px"><FolderChecked /></el-icon>
+          </div>
+          <div style="width: 180px;height: 90px;float:left;margin-left: 30px;text-align: center">
+            <div style="font-family: cursive;font-weight: bold;font-size: 40px;">
+              {{user}}
+            </div>
+            <div style="font-weight: bold;margin-top:40px;font-size: 30px">
+              上线产品数量
+            </div>
+          </div>
         </div>
       </el-card>
 
 
-      <el-card shadow="hover" style="width:25%;height:20%;margin-top: 100px;margin-left: 100px">
-        <div style="display: flex;justify-content: center;height: 30px;font-size: 25px;align-items: center">
-          <el-icon  style="margin-right: 15px;"><Search /></el-icon>
-          {{searchTimes}}
-        </div>
-        <div style="opacity:80%;font-size: 25px;margin-top: 30px;text-align: center">
-          用户查询次数
+      <el-card shadow="hover"  class="card"  style="margin-top: 50px;margin-left: 50px;background: linear-gradient(90deg, #b46ab0 0%, rgba(28, 97, 234, 0) 100%)">
+        <div>
+          <div style="width: 70px;height: 70px;float:left;">
+            <el-icon size="70px"><Search /></el-icon>
+          </div>
+          <div style="width: 180px;height: 90px;float:left;margin-left: 30px;text-align: center">
+            <div style="font-family: cursive;font-weight: bold;font-size: 40px;">
+              {{user}}
+            </div>
+            <div style="font-weight: bold;margin-top:40px;font-size: 30px">
+              用户查询次数
+            </div>
+          </div>
         </div>
       </el-card>
 
@@ -121,3 +158,17 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.card{
+  width:28%;height:20%;
+}
+.line {
+width: 70%;
+}
+.line div {
+width: 100%;
+height: 0;
+border-top: 2px solid black;
+}
+</style>
