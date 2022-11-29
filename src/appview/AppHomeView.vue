@@ -34,8 +34,8 @@ export default {
     AppBottom
   },data(){
     return{
-      identity:'普通用户',
-      // identity:'供应商'
+      // identity:'普通用户',
+      identity:'供应商'
     }
   }
   ,methods:{

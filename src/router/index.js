@@ -17,6 +17,8 @@ import AppInfoView from "@/appview/InfoView"
 import AppRegisterView from "@/appview/AppRegisterView";
 import providerSearchView from "@/appview/ProviderSearchView";
 import UploadProjectView from "@/appview/UploadProjectView";
+import NewProjectView from "@/appview/NewProjectView";
+import SearchResultView from "@/appview/SearchResultView";
 
 const routes = [
   {
@@ -103,6 +105,14 @@ const routes = [
     path:'/uploadProject',
     name: 'uploadProject',
     component: UploadProjectView
+  },{
+    path: '/newProjectView',
+    name: 'newProjectView',
+    component: NewProjectView
+  },{
+    path: '/searchResultView',
+    name: '/searchResultView',
+    component: SearchResultView
   }
 
 
