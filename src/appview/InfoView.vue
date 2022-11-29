@@ -6,7 +6,7 @@
       round
       width="10rem"
       height="10rem"
-      src="https://unpkg.com/@vant/assets/cat.jpeg"
+      :src=src
   />
     <span style="display:block;font-size: 30px;text-align: center;padding-top: 10px">张三</span>
   </div>
@@ -22,12 +22,18 @@
 
 <script>
 import AppBottom from "@/components/AppBottom";
+import request from "@/utils/request";
 
 export default {
   name: "InfoView",
   components:{
     AppBottom
-  },
+  },mounted() {
+  },data(){
+    return{
+      src:''
+    }
+  }
 }
 </script>
 

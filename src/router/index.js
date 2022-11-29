@@ -19,6 +19,7 @@ import providerSearchView from "@/appview/ProviderSearchView";
 import UploadProjectView from "@/appview/UploadProjectView";
 import NewProjectView from "@/appview/NewProjectView";
 import SearchResultView from "@/appview/SearchResultView";
+import PersonView from "@/appview/PersonView";
 
 const routes = [
   {
@@ -113,6 +114,10 @@ const routes = [
     path: '/searchResultView',
     name: '/searchResultView',
     component: SearchResultView
+  },{
+    path: '/personView',
+    name: '/personView',
+    component: PersonView
   }
 
 

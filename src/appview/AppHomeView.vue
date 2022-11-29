@@ -12,10 +12,10 @@
         <van-grid-item icon="orders-o" text="申请权限" v-if="identity==='普通用户'"/>
         <van-grid-item icon="shop-o" text="供应商查询" to="/providerSearch"/>
         <van-grid-item icon="plus" text="上传产品" v-if="identity==='供应商'" to="/uploadProject" />
-        <van-grid-item icon="friends-o" text="人员信息" v-if="identity==='供应商'" />
+        <van-grid-item icon="friends-o" text="人员信息" v-if="identity==='供应商'" to="/personView" />
         <van-grid-item icon="sign" text="上传检测证明" v-if="identity==='供应商'"/>
         <van-grid-item icon="logistics" text="上传物流证明" v-if="identity==='供应商'"/>
-        <van-grid-item icon="search" text="被搜次数" v-if="identity==='供应商'"/>
+        <van-grid-item icon="search" text="被搜次数" v-if="identity==='供应商'" @click="showSearchTimes"/>
         <van-grid-item icon="logistics" text="查询物流" v-if="identity==='普通用户'"/>
         <van-grid-item icon="plus" text="上传生长信息" v-if="identity==='供应商'"/>
       </van-grid>
@@ -28,6 +28,7 @@
 
 <script>
 import AppBottom from "@/components/AppBottom";
+import { Toast } from 'vant';
 export default {
   name: "AppHomeView",
   components:{
@@ -35,10 +36,14 @@ export default {
   },data(){
     return{
       // identity:'普通用户',
-      identity:'供应商'
+      identity:'供应商',
+      searchTimes:0
     }
   }
   ,methods:{
+    showSearchTimes(){
+      Toast('您被查询过' + this.searchTimes + '次');
+    }
   }
 }
 </script>
