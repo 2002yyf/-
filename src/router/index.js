@@ -20,6 +20,8 @@ import UploadProjectView from "@/appview/UploadProjectView";
 import NewProjectView from "@/appview/NewProjectView";
 import SearchResultView from "@/appview/SearchResultView";
 import PersonView from "@/appview/PersonView";
+import UploadDetectionView from "@/appview/UploadDetectionView";
+import UploadLogisticsView from "@/appview/UploadLogisticsView";
 
 const routes = [
   {
@@ -118,6 +120,14 @@ const routes = [
     path: '/personView',
     name: '/personView',
     component: PersonView
+  },{
+    path:'/uploadDetectionView',
+    name:'/uploadDetectionView',
+    component: UploadDetectionView
+  },{
+    path: '/uploadLogisticsView',
+    name:'/uploadLogisticsView',
+    component: UploadLogisticsView
   }
 
 
