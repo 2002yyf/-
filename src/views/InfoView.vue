@@ -79,7 +79,7 @@
           <el-table-column label="作物组成" width="220">
             <template #default="scope">
                 <el-icon><timer /></el-icon>
-                <span>{{ scope.row.updateTime }}</span>
+                <span>{{ scope.row.crops.name}}</span>
             </template>
           </el-table-column>
 <!--          <el-table-column label="图片" width="150">-->

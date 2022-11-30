@@ -26,14 +26,19 @@
         <span  class="span">产品信息</span>
       </el-menu-item>
 
-      <el-sub-menu index="4" collapse-transition = true>
-        <template #title>
-          <el-icon><Watermelon /></el-icon>
-          <span  class="span">生产管理</span>
-        </template>
-        <el-menu-item index="4-1"  class="span" @click="this.$router.push('/Planting1')">作物信息</el-menu-item>
-        <el-menu-item index="4-2"  class="span" @click="this.$router.push('/Planting2')">生长信息</el-menu-item>
-      </el-sub-menu>
+      <el-menu-item index="4"  @click="this.$router.push('/Planting')">
+        <el-icon><Watermelon /></el-icon>
+        <span  class="span">生长记录</span>
+      </el-menu-item>
+
+<!--      <el-sub-menu index="4" collapse-transition = true>-->
+<!--        <template #title>-->
+<!--          <el-icon><Watermelon /></el-icon>-->
+<!--          <span  class="span">生产管理</span>-->
+<!--        </template>-->
+<!--        <el-menu-item index="4-1"  class="span" @click="this.$router.push('/Planting1')">作物信息</el-menu-item>-->
+<!--        <el-menu-item index="4-2"  class="span" @click="this.$router.push('/Planting2')">生长信息</el-menu-item>-->
+<!--      </el-sub-menu>-->
 
 
 

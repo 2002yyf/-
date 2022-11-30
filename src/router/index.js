@@ -8,8 +8,6 @@ import UserView from "@/views/UserView";
 import Produce from "@/views/Produce";
 import Detection from "@/views/Detection";
 import Logistics from "@/views/Logistics";
-import Planting1 from "@/views/Planting1";
-import Planting2 from "@/views/Planting2";
 import AppLoginView from "@/appview/AppLoginView";
 import AppHomeView from "@/appview/AppHomeView";
 import SearchView from "@/appview/SearchView";
@@ -22,6 +20,7 @@ import SearchResultView from "@/appview/SearchResultView";
 import PersonView from "@/appview/PersonView";
 import UploadDetectionView from "@/appview/UploadDetectionView";
 import UploadLogisticsView from "@/appview/UploadLogisticsView";
+import Planting from "@/views/Planting";
 
 const routes = [
   {
@@ -52,14 +51,9 @@ const routes = [
     component: DataScreen,
 
   },{
-    path: '/Planting1',
-    name:'Planting1',
-    component: Planting1,
-  }
-  ,{
-    path: '/Planting2',
-    name:'Planting2',
-    component: Planting2,
+    path: '/Planting',
+    name:'Planting',
+    component: Planting,
   }
   ,{
     path: '/Produce',
