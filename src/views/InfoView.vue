@@ -69,14 +69,14 @@
             </template>
           </el-table-column>
 
-          <el-table-column label="生产时间" width="220">
+          <el-table-column label="上传时间" width="220">
             <template #default="scope">
                 <el-icon><timer /></el-icon>
                 <span>{{ scope.row.createTime }}</span>
             </template>
           </el-table-column>
 
-          <el-table-column label="上传时间" width="220">
+          <el-table-column label="作物组成" width="220">
             <template #default="scope">
                 <el-icon><timer /></el-icon>
                 <span>{{ scope.row.updateTime }}</span>
