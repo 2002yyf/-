@@ -35,6 +35,9 @@
 
 <div  style="margin-left: 250px;width:750px;">
   <el-table
+      element-loading-background="#dee7da"
+      element-loading-text="拼命加载中"
+      v-loading="loading"
       :data="tableData"
       :default-sort="{ prop: 'date', order: 'descending' }"
       :cell-style="{textAlign: 'center'}"
@@ -149,6 +152,7 @@ export default {
   },
   data(){
     return{
+      loading: false,
       page:1,
       pageSize:8,
       total: 0,
@@ -219,6 +223,7 @@ export default {
       this.loadData()
     },
     loadData(){
+      this.loading = true
       request.get("/user/page",{
             params:{
               page:this.page,
@@ -229,8 +234,11 @@ export default {
             }
           }
       ).then(res => {
-        this.tableData=res.data.records;
-        this.total=res.data.total;
+        setTimeout(() => {
+          this.tableData=res.data.records;
+          this.total=res.data.total;
+          this.loading = false;
+        }, 600)
       })
     },
     onSubmit() {

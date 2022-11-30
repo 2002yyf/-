@@ -657,13 +657,14 @@ export default {
       //配置
       let option = {
         //title可要可不要
-
-        // title: {
-        //   text: "查查的地图",
-        //   textStyle: {
-        //     color: "#ffffff",
-        //   },
-        // },
+        title: {
+          text: "物流统计",
+          textStyle: {
+            color: "#ffffff",
+            fontSize:30,
+            textAlign:'center',
+          },
+        },
         legend: {
           show: true,
           selected: {},
@@ -926,12 +927,13 @@ export default {
         },
         yAxis: {
           type: 'value',
-          name: '年度生产量',
+          name: '用户查询次数',
           nameLocation: 'end',
           nameGap: 24,
           nameTextStyle: {
-            color: 'rgba(255,255,255,.5)',
-            fontSize: 14,
+            color: 'rgba(171,99,99,0.5)',
+            fontSize: 15,
+            // fontWeight:'bold',
           },
           splitNumber: 4,
           axisLine: {
