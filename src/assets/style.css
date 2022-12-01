@@ -18,7 +18,7 @@
     left: 10px;
     background-color: #5d4e2a;
     /*background-color: #3b856a;*/
-    border-radius: 0px 0px 0px 15px;
+    border-radius: 15px 0px 0px 15px;
     border: 2px solid #6e3239;
     box-shadow: darkgrey 10px 10px 30px 5px
 }
@@ -31,7 +31,7 @@
     overflow-y: auto;
     overflow-x: auto;
     padding: 15px;
-    border-radius: 0px 0px 15px 0px;
+    border-radius: 0px 15px 15px 0px;
     border: 1px solid #5d4e2a;
     box-shadow: darkgrey 10px 10px 30px 5px;
 

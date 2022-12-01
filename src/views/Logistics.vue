@@ -91,8 +91,7 @@
     <el-dialog
         v-model="dialogVisible"
         title="物流信息"
-        :visible.sync="specDlgVisible"
-        class="spec-dialog"
+
         width="30%"
         v-loading="loading1"
     >
