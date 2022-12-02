@@ -21,15 +21,14 @@
     </div>
       <div class="table">
         <el-table :data="plantInfo"
-                  element-loading-background="#dee7da"
+                  element-loading-background="rgba(162,162,185,0.32)"
                   element-loading-text="拼命加载中"
                   v-loading="loading"
                   border
                   :header-row-style="headerRowStyle"
                   :row-style="rowState"
-                  :header-cell-style="{'background':'#e0eed1','text-align': 'center'}"
-                  :cell-style="{'text-align':'center',backgroundColor: '#dee7da',}"
-
+                  :header-cell-style="{'background':'#5ca41e','text-align': 'center'}"
+                  :cell-style="{'text-align':'center'}"
         >
 
           <el-table-column prop="id" label="信息编号" align="center" header-align="left" width="100px"/>
@@ -37,7 +36,7 @@
           <el-table-column prop="plantTime"  label="种植时间" />
           <el-table-column prop="plantPlace" label="种植地点"/>
           <el-table-column prop="plantNum" label="种植数量（亩）"/>
-          <el-table-column  fixed="right" label="操作" width="200px">
+          <el-table-column  label="操作">
             <template #default="scope">
               <button class="btn1" style="width: 100px" @click="showDetail(scope.row.id)">生长记录</button>
             </template>
@@ -79,7 +78,6 @@
                 {{ activity.info }}
               </el-timeline-item>
             </el-timeline>
-            <el-empty description="无结果" v-if="activities.length===0" />
           </el-scrollbar>
           <div style="margin-top: 30px">
             <button class="btn1" style="margin-left:300px; width:100px" type="primary" @click="dialogVisible = false">
@@ -126,7 +124,7 @@ export default {
           console.log(args)
           return {
             height: '50px',
-            color:'#5b5e0b',
+            color:'#51540a',
             fontSize:'18px',
             fontFamily:'cursive',
             fontWeight:'bolder',
@@ -137,7 +135,7 @@ export default {
           return {
             color:'#6a9a49',
             fontWeight:'bold',
-            backgroundColor: '#dee7da',
+            backgroundColor: 'rgba(162,162,185,0.32)',
             fontFamily:'cursive',
             fontSize:"17px",
           }

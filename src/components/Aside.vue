@@ -57,10 +57,10 @@
         <span  class="span">大屏数据统计</span>
       </el-menu-item>
 
-      <el-menu-item index="9">
-        <el-icon><Setting /></el-icon>
-        <span class="span">设置</span>
-      </el-menu-item>
+<!--      <el-menu-item index="9">-->
+<!--        <el-icon><Setting /></el-icon>-->
+<!--        <span class="span">设置</span>-->
+<!--      </el-menu-item>-->
 
     </el-menu>
   </div>

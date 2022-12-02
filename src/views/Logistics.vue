@@ -24,6 +24,7 @@
                   element-loading-text="拼命加载中"
                   v-loading="loading"
                   border
+                  element-loading-background="rgba(162,162,185,0.32)"
                   :cell-style="{textAlign: 'center'}"
                   :header-row-style="headerRowStyle"
                   :row-style="rowState"
@@ -164,9 +165,9 @@ export default {
     },
     rowState(arg){
       return {
-        color:'#347070',
+        color:'#387a7a',
         fontWeight:'bold',
-        background: '#e5ddbd',
+        background: 'rgba(162,162,185,0.32)',
         fontFamily:'cursive',
         fontSize:"17px",
       }

@@ -35,7 +35,7 @@
 
 <div  style="margin-left: 250px;width:750px;">
   <el-table
-      element-loading-background="#dee7da"
+      element-loading-background="rgba(162,162,185,0.32)"
       element-loading-text="拼命加载中"
       v-loading="loading"
       :data="tableData"
@@ -56,7 +56,7 @@
 <!--      </template>-->
 <!--    </el-table-column>>-->
     <el-table-column label="操作" width="150">
-      <button class="btn" @click="handleDel(row)">删除</button>
+      <button class="btn1" @click="handleDel(row)">删除</button>
     </el-table-column>
   </el-table>
 </div>
@@ -206,7 +206,7 @@ export default {
       return {
         color:'#6a9a49',
         fontWeight:'bold',
-        background: '#dee7da',
+        background: 'rgba(162,162,185,0.32)',
         fontFamily:'cursive',
         fontSize:"15px",
       }

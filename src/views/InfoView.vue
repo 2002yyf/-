@@ -26,7 +26,7 @@
       </div>
       <div class="table" style="margin-top: 20px">
         <el-table
-            element-loading-background="#dee7da"
+            element-loading-background="rgba(162,162,185,0.32)"
             element-loading-text="拼命加载中"
             v-loading="loading"
             border
@@ -142,7 +142,7 @@ export default {
       return {
         color:'#6a9a49',
         fontWeight:'bold',
-        background: '#dee7da',
+        background: 'rgba(162,162,185,0.32)',
         fontFamily:'cursive',
         fontSize:"17px",
       }

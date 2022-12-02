@@ -34,26 +34,25 @@
         width="60%"
         v-loading="loading"
     >
-      <div style="width:80%;">
+      <div style="width:850px;margin-left: 13px">
         <el-table :data="application"
-                  element-loading-background="#dee7da"
-                  element-loading-text="拼命加载中"
-                  v-loading="loading"
-                  border
-                  :header-cell-style="{'background':'#e0eed1','text-align': 'center'}"
-                  :cell-style="{'text-align':'center',backgroundColor: '#dee7da',}"
+                width="850px"
+                  :cell-style="{textAlign: 'center'}"
+                  :header-row-style="headerRowStyle"
+                  :row-style="rowState"
+                  :header-cell-style="{textAlign: 'center'}"
         >
-          <el-table-column prop="id" label="信息编号" align="center" header-align="left"/>
-          <el-table-column prop="name"  label="作物名称" />
-          <el-table-column prop="plantTime"  label="种植时间" />
-          <el-table-column prop="plantPlace" label="种植地点"/>
-          <el-table-column prop="plantNum" label="种植数量（亩）"/>
-          <el-table-column  fixed="right" label="操作">
+          <el-table-column prop="role" label="身份" />
+          <el-table-column prop="userName" label="昵称"  />
+          <el-table-column prop="createTime" label="注册日期" />
+          <el-table-column prop="isDelete" label="状态" />
+          <el-table-column prop="" label="上传材料"/>
+          <el-table-column label="操作">
             <button class="btn1" style="width: 100px" @click="">审批通过</button>
           </el-table-column>
         </el-table>
       </div>
-      <div style="margin-top:20px; margin-bottom: 20px;margin-left: 20px">
+      <div style="margin-top:20px; margin-bottom: 50px;margin-left: 120px">
         <el-pagination style="color: #00b891;font-family:cursive;font-weight: bold;"
                        :current-page="page"
                        :page-size="pageSize"
@@ -64,7 +63,11 @@
                        @current-change="handleCurrentChange"
         />
       </div>
-
+      <div style="margin-top: 10px">
+        <button class="btn1" style="margin-left:750px; width:100px" type="primary" @click="dialogVisible = false">
+          退出
+        </button>
+      </div>
     </el-dialog>
   </div>
 </template>
@@ -96,6 +99,24 @@ export default {
     this.loadData()
   },
   methods:{
+    headerRowStyle(args){
+      return {
+        height: '50px',
+        // color:'#5b5e0b',
+        fontSize:'18px',
+        fontFamily:'cursive',
+        fontWeight:'bolder',
+      }
+    },
+    rowState(arg){
+      return {
+        // color:'#6a9a49',
+        fontWeight:'bold',
+        // background: '#bdbdd7',
+        fontFamily:'cursive',
+        fontSize:"17px",
+      }
+    },
     GetInformation(){
       let userinfo = JSON.parse(localStorage.getItem('userinfo'))
       this.information.userName=userinfo.userName;
@@ -118,7 +139,7 @@ export default {
     },
     loadData(){
       this.loading = true
-      request.get("/crop/page",{
+      request.get("/user/page",{
             params:{
               page:this.page,
               pageSize:this.pageSize,
@@ -145,40 +166,24 @@ export default {
 </script>
 
 <style scoped>
-.btn2 {
-  width: 70px;
-  border: 2px solid #e7c69f;
-  text-align: center;
-  height: 35px;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size:15px;
-  margin-top: 10px;
-  font-family: cursive;
-  background-color: #ffffff;
-  color: #8f7860;
-}
-.btn2:hover {
-
-  color: #56481f;
-}
 img {
   height: 40px;
   width: 40px;
-  border-radius: 50%;
+  border-radius: 15px;
   border: 2px solid #4048a6;
   margin-left: 10px;
 }
-
-
 ::v-deep .el-dialog {
-  border-radius: 30px;
+  border-radius: 15px;
+  /*background: linear-gradient(90deg, rgba(28, 97, 234, 0) 100%, #e0c8c8 20%);*/
+  /*background: linear-gradient(90deg, #4f450a 0%, rgba(28, 97, 234, 0) 100%);*/
+  background-color: #afafc2;
 }
 ::v-deep .el-dialog__header {
   padding: 0 !important;
-  width: 100%;
-  height: 70px;
-  background: linear-gradient(90deg, #6a98b4 0%, rgba(28, 97, 234, 0) 100%);
+  width: 80%;
+  height: 50px;
+  /*background: linear-gradient(90deg, #6a98b4 0%, rgba(28, 97, 234, 0) 100%);*/
 }
 ::v-deep .el-dialog__title {
   margin-left: 25px;
@@ -188,13 +193,30 @@ img {
   font-weight: bold;
   font-size: 25px;
 }
-::v-deep .el-dialog__body {
-  /*background: linear-gradient(90deg, #a19e76 0%, rgba(28, 97, 234, 0) 100%);*/
-  background: #b4a97f;
+/*::v-deep .el-dialog__body {*/
+/*  !*background: linear-gradient(90deg, #a19e76 0%, rgba(28, 97, 234, 0) 100%);*!*/
+/*  !*background: #c4b4e5;*!*/
+/*  font-weight: bold;*/
+/*  font-family: cursive;*/
+/*  border-radius: 15px;*/
+/*}*/
+
+.btn1 {
+  width: 55px;
+  border: 2px solid #6a6c0f;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 7px;
+  display: inline-block;
+  font-family:cursive;
   font-weight: bold;
-  font-family: cursive;
+  font-size:16px;
+  background-color: #afafc2;
+  color:#5b5e0b;
 }
-.el-scrollbar__wrap {
-  overflow-x: hidden !important;
+.btn1:hover {
+  /*filter: brightness(2.2);*/
+  background-color: #c5c5de;
+  color:#5b5e0b;
 }
 </style>
