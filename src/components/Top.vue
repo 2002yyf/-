@@ -42,13 +42,17 @@
                   :row-style="rowState"
                   :header-cell-style="{textAlign: 'center'}"
         >
+          <el-table-column prop="id" label="申请编号" />
+          <el-table-column prop="name" label="用户名"  />
           <el-table-column prop="role" label="身份" />
-          <el-table-column prop="userName" label="昵称"  />
-          <el-table-column prop="createTime" label="注册日期" />
-          <el-table-column prop="isDelete" label="状态" />
-          <el-table-column prop="" label="上传材料"/>
-          <el-table-column label="操作">
-            <button class="btn1" style="width: 100px" @click="">审批通过</button>
+          <el-table-column prop="create_time" label="注册日期" />
+          <el-table-column prop="status" label="审核状态" />
+<!--          <el-table-column prop="" label="上传材料"/>-->
+          <el-table-column label="操作" width="200px">
+            <template #default="scope">
+            <button class="btn1" style="width: 100px;" @click="Pass(scope.row.id)">审批通过</button>
+            <button class="btn1" style="width: 50px;margin-left: 20px" @click="NoPass(scope.row.id)">驳回</button>
+            </template>
           </el-table-column>
         </el-table>
       </div>
@@ -77,6 +81,7 @@
 import {ElMessageBox} from "element-plus";
 import Icon from "@/components/icon";
 import request from "@/utils/request";
+
 export default {
   components: {Icon},
   name: "Top",
@@ -89,8 +94,7 @@ export default {
       total:0,
       application:[],
       information:{
-        img:'',
-        userName:'',
+        status:'',
       }
     }
   },
@@ -139,15 +143,16 @@ export default {
     },
     loadData(){
       this.loading = true
-      request.get("/user/page",{
+      request.get("/application/page",{
             params:{
               page:this.page,
               pageSize:this.pageSize,
+              status:this.status,
             }
           }
       ).then(res => {
         setTimeout(() => {
-          this.application=res.data.records;
+          this.application=res.data;
           this.total=res.data.total;
           this.loading = false;
         }, 600)
@@ -160,6 +165,35 @@ export default {
     handleCurrentChange(val) {
       this.page=val
       this.loadData()
+    },
+    Pass(i){
+       let url='/application/'+i+'/1'
+      console.log(url)
+      request.post(url).then(res => {
+        setTimeout(() => {
+          if (res.code === 1) {
+            this.$message({
+              type: "success",
+              message: "审核通过"
+            })
+            this.loadData()
+          }
+        }, 300)
+     })
+    },
+    NoPass(i){
+      let url='/application/'+i+'/2'
+      request.post(url).then(res => {
+        setTimeout(() => {
+          if (res.code === 1) {
+            this.$message({
+              type: "success",
+              message: "审核不通过"
+            })
+            this.loadData()
+          }
+        }, 300)
+      })
     },
   }
 }

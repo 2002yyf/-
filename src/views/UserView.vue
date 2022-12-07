@@ -45,8 +45,8 @@
       :row-style="rowState"
       :header-cell-style="{'background':'#8c9d47',textAlign: 'center'}"
   >
-    <el-table-column prop="role" label="身份"  width="150" />
     <el-table-column prop="userName" label="昵称" width="150" />
+    <el-table-column prop="role" label="身份"  width="150" />
     <el-table-column prop="createTime" label="注册日期" width="200"/>
     <el-table-column prop="isDelete" label="状态" width="100"/>
 <!--    <el-table-column label="公司人员" width="180">-->

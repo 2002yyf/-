@@ -62,7 +62,7 @@
           </div>
           <div style="width: 180px;height: 90px;float:left;margin-left: 30px;text-align: center">
             <div style="font-family: cursive;font-weight: bold;font-size: 40px;">
-              {{user}}
+              {{application}}
             </div>
             <div style="font-weight: bold;margin-top:40px;font-size: 30px">
               待审批数量
@@ -114,6 +114,7 @@ import Top from '@/components/Top.vue'
 import Icon from "@/components/icon";
 import {ElNotification} from "element-plus";
 import {h} from "vue";
+import request from "@/utils/request";
 export default {
   name: 'HomeView',
   components: {
@@ -124,13 +125,24 @@ export default {
     return{
       user:0,
       provider:0,
-      kind:0,
+      application:5,
       waiting:0,
       online:0,
       searchTimes:0,
     }
   },
+  created() {
+    this.count();
+  },
   methods:{
+    count(){
+      let url='/application/count/pending'
+      request.get(url).then(res => {
+        this.application=res.data
+        console.log(res.data)
+        console.log(this.application)
+      })
+    },
     load(){
       let date=localStorage.getItem("date")
       if(!date)
@@ -138,7 +150,7 @@ export default {
         localStorage.setItem("date", JSON.stringify( new Date().getDate()))
         ElNotification({
           title: '消息',
-          message: h('i', { style: 'color: teal' }, '您有'+this.kind+'条申请待审批'),
+          message: h('i', { style: 'color: teal' }, '您有'+this.application+'条申请待审批'),
         })
       }
       else{
@@ -147,11 +159,11 @@ export default {
           localStorage.setItem("date", JSON.stringify( new Date().getDate()))
           ElNotification({
             title: '消息',
-            message: h('i', { style: 'color: teal' }, '您有'+this.kind+'条申请待审批'),
+            message: h('i', { style: 'color: teal' }, '您有'+this.application+'条申请待审批'),
           })
         }
       }
-    }
+    },
   },
   mounted() {
     this.load();
