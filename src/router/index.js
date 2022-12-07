@@ -21,6 +21,8 @@ import PersonView from "@/appview/PersonView";
 import UploadDetectionView from "@/appview/UploadDetectionView";
 import UploadLogisticsView from "@/appview/UploadLogisticsView";
 import Planting from "@/views/Planting";
+import GrowView from "@/appview/GrowView";
+import ApplicationToProvider from "@/appview/ApplicationToProvider";
 
 const routes = [
   {
@@ -122,6 +124,14 @@ const routes = [
     path: '/uploadLogisticsView',
     name:'/uploadLogisticsView',
     component: UploadLogisticsView
+  },{
+    path: '/growView',
+    name:'/growView',
+    component: GrowView
+  },{
+    path: '/applicationToProvider',
+    name: '/applicationToProvider',
+    component: ApplicationToProvider
   }
 
 
