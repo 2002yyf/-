@@ -7,9 +7,10 @@
         农 产 品 溯 源 系 统
       </div>
       <div style="height: 70px;float: left">
-        <div style="width:80px;margin-top:25px;float:left">
+        <div style="width:90px;margin-top:25px;float:left">
           <el-icon size="25px" @click="logout" color="#234d3e"><Avatar /></el-icon>
           <el-icon size="25px" @click="showDetail()" color="#234d3e" style="margin-left: 10px"><BellFilled /></el-icon>
+          <el-badge  class="mark" :value="app" />
         </div>
         <!--  <div style="width:70px;height40px;margin-left:1000px;float:right;background-color: #0b5b33">-->
         <!--    <button class="btn2" style="margin-right: 20px;" @click="logout">退出登录</button>-->
@@ -18,7 +19,7 @@
           <div style="float:left;height: 20px;text-align: center;font-family: cursive;font-weight: bolder;font-size: 15px;color: #303038">
             {{information.userName}}
           </div>
-          <img src="https://img.zcool.cn/community/01972c5f110b9fa801206621eba569.png@1280w_1l_2o_100sh.png">
+          <img class="img1" src="https://img.zcool.cn/community/01972c5f110b9fa801206621eba569.png@1280w_1l_2o_100sh.png">
         </div>
         <div style="margin-top:25px;float:left">
           <el-icon size="25px" @click="logout" color="#234d3e"><Setting /></el-icon>
@@ -47,7 +48,13 @@
           <el-table-column prop="role" label="身份" />
           <el-table-column prop="create_time" label="注册日期" />
           <el-table-column prop="status" label="审核状态" />
-<!--          <el-table-column prop="" label="上传材料"/>-->
+          <el-table-column prop="file" label="上传材料">
+            <template  #default="scope">
+              <button class="btn2"  @click="File(scope.row.file)">
+              查看文件
+              </button>
+            </template>
+          </el-table-column>
           <el-table-column label="操作" width="200px">
             <template #default="scope">
             <button class="btn1" style="width: 100px;" @click="Pass(scope.row.id)">审批通过</button>
@@ -93,6 +100,7 @@ export default {
       pageSize:4,
       total:0,
       application:[],
+      app:'',
       information:{
         status:'',
       }
@@ -100,7 +108,8 @@ export default {
   },
   created() {
     this.GetInformation();
-    this.loadData()
+    this.loadData();
+    this.count();
   },
   methods:{
     headerRowStyle(args){
@@ -195,12 +204,26 @@ export default {
         }, 300)
       })
     },
+    File(i){
+      let url='http://localhost:9000/api/common/download?name='+i
+      if (i==0) {
+        this.$message.info("无提交的文件");
+      } else{
+        window.open(url);
+      }
+    },
+    count(){
+      let url='/application/count/pending'
+      request.get(url).then(res => {
+        this.app=res.data
+      })
+    },
   }
 }
 </script>
 
 <style scoped>
-img {
+.img1 {
   height: 40px;
   width: 40px;
   border-radius: 15px;
@@ -253,4 +276,15 @@ img {
   background-color: #c5c5de;
   color:#5b5e0b;
 }
+.btn2 {
+  border: none;
+  background-color: inherit;
+  width:100px;
+  font-size: 16px;
+  cursor: pointer;
+  //display: inline-block;
+  color: dodgerblue;
+  text-align: center;
+}
+.btn2:hover {background:#afafc2;}
 </style>

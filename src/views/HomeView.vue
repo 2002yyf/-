@@ -125,7 +125,7 @@ export default {
     return{
       user:0,
       provider:0,
-      application:5,
+      application:0,
       waiting:0,
       online:0,
       searchTimes:0,
@@ -133,13 +133,14 @@ export default {
   },
   created() {
     this.count();
+    console.log(this.application)
   },
   methods:{
     count(){
       let url='/application/count/pending'
       request.get(url).then(res => {
         this.application=res.data
-        console.log(res.data)
+        this.load()
         console.log(this.application)
       })
     },
@@ -166,7 +167,7 @@ export default {
     },
   },
   mounted() {
-    this.load();
+
   }
 }
 </script>
