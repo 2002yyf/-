@@ -12,9 +12,8 @@
   </div>
   <div style="height: 400px">
     <van-cell-group style="top: 40px">
-      <van-cell title="我的信息" is-link url="https://github.com" />
-      <van-cell title="申请记录" is-link url="https://github.com" />
-      <van-cell title="搜索记录" is-link to="index" />
+      <van-cell title="我的信息" to="/myInfo" />
+      <van-cell title="搜索记录"  />
     </van-cell-group>
 
   </div>

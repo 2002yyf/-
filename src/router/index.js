@@ -23,6 +23,7 @@ import UploadLogisticsView from "@/appview/UploadLogisticsView";
 import Planting from "@/views/Planting";
 import GrowView from "@/appview/GrowView";
 import ApplicationToProvider from "@/appview/ApplicationToProvider";
+import MyInfoView from "@/appview/MyInfoView";
 
 const routes = [
   {
@@ -132,6 +133,10 @@ const routes = [
     path: '/applicationToProvider',
     name: '/applicationToProvider',
     component: ApplicationToProvider
+  },{
+    path:'/myInfo',
+    name: '/myInfo',
+    component: MyInfoView
   }
 
 
