@@ -12,7 +12,7 @@
                 :color="['#008CFF', '#00ADDD']"
             /></el-col>
             <el-col :span="12"
-              ><div class="title_text">数 据 可 视 化 系 统</div>
+              ><div class="title_text">农 产 品 数 据 可 视 化 系 统</div>
               <dv-decoration-5
                 class="title_center"
                 :color="['#008CFF', '#00ADDD']"
@@ -33,38 +33,40 @@
               <div class="left_box1">
                 <dv-border-box-12>
                   <div id="Rose_diagram"></div>
+
                   <dv-active-ring-chart
                     :config="config"
                     class="left_box1_rose_right"
                   />
-                  <div
-                    class="rose_text"
-                    v-for="(item, index) in numberData"
-                    :key="index"
-                  >
-                    <p>
-                      <span class="coin">￥</span>
-                      <span class="rose_text_nmb">{{
-                        item.number.number
-                      }}</span>
-                    </p>
-                    <p>
-                      <span>{{ item.text }}</span>
-                      <span class="colorYellow">(件)</span>
-                    </p>
-                  </div>
+<!--                  <div-->
+<!--                    class="rose_text"-->
+<!--                    v-for="(item, index) in numberData"-->
+<!--                    :key="index"-->
+<!--                  >-->
+<!--                    <p>-->
+<!--                      <span class="coin">￥</span>-->
+<!--                      <span class="rose_text_nmb">{{-->
+<!--                        item.number.number-->
+<!--                      }}</span>-->
+<!--                    </p>-->
+<!--                    <p>-->
+<!--                      <span>{{ item.text }}</span>-->
+<!--                      <span class="colorYellow">(件)</span>-->
+<!--                    </p>-->
+<!--                  </div>-->
                 </dv-border-box-12>
               </div>
               <!-- 柱状图部分 -->
               <div class="left_box2">
                 <dv-border-box-12 style="padding-top: 10px">
-                  <p style="margin-left: 15px">数据统计图</p>
+                  <p style="margin-left: 15px;color: #008cff;font-size: 20px;font-weight: bold">产品产地统计</p>
                   <div id="columnar"></div>
                 </dv-border-box-12>
               </div>
               <!-- 轮播表格部分 -->
               <div class="left_box3">
                 <dv-border-box-12 style="padding-top: 10px">
+                  <p style="margin-left: 15px;color: #008cff;font-size: 20px;font-weight: bold">产品检测</p>
                   <dv-scroll-board
                     :config="board_info"
                     class="carousel_list"
@@ -89,12 +91,12 @@
               <!-- 轮播排行榜部分 -->
               <div class="right_box1">
                 <dv-border-box-12>
-                  <dv-decoration-7 style="width: 100%; height: 30px"
-                    >销 售 排 行 榜</dv-decoration-7
+                  <dv-decoration-7 style="width: 100%; height: 30px;color: #008cff;font-size: 20px;font-weight: bold"
+                    >检 测 通 过 率</dv-decoration-7
                   >
                   <dv-scroll-ranking-board
-                    :config="config"
-                    style="width: 95%; height: 87%; margin-left: 2%"
+                    :config="config1"
+                    style="width: 95%; height: 85%; margin-left: 2%"
                   />
                 </dv-border-box-12>
               </div>
@@ -107,6 +109,9 @@
               <!-- 部分 -->
               <div class="right_box3">
                 <dv-border-box-12 :reverse="true">
+                  <dv-decoration-7 style="width: 100%; height: 30px;color: #008cff;font-size: 20px;font-weight: bold"
+                  >产 品 销 售 排 行 榜</dv-decoration-7
+                  >
                   <dv-conical-column-chart :config="cone" class="cone_box" />
                 </dv-border-box-12>
               </div>
@@ -140,37 +145,57 @@ export default {
       //周几
       weekday: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
       //轮播排行榜
+      config1: {
+        data: [
+          {
+            name: '张三',
+            value:99,
+          },
+          {
+            name: '张一',
+            value:94,
+          },
+          {
+            name: '张二',
+            value: 91,
+          },
+          {
+            name: '张五',
+            value: 87,
+          },
+          {
+            name: '张六',
+            value: 74,
+          },
+          {
+            name: '张七',
+            value: 74,
+          },
+          {
+            name: '张三',
+            value: 100,
+          },
+        ],
+        // valueFormatter:{
+        //   value
+        // }
+        unit: "%",
+      },
       config: {
         data: [
           {
-            name: '周口',
-            value: 55,
-          },
-          {
-            name: '南阳',
+            name: '审核通过率',
             value: 120,
           },
           {
-            name: '西峡',
-            value: 78,
-          },
-          {
-            name: '驻马店',
-            value: 66,
-          },
-          {
-            name: '新乡',
-            value: 80,
-          },
-          {
-            name: '信阳',
-            value: 45,
-          },
-          {
-            name: '漯河',
-            value: 29,
+            name: '待审核数',
+            value: 55,
           },
         ],
+        color:['#89d798', '#e790cc'],
+        digitalFlopStyle: {
+          fontSize: 20,
+        },
       },
       //左侧饼图文字
       numberData: [
@@ -195,7 +220,7 @@ export default {
       ],
       //左侧轮播表格配置项
       board_info: {
-        header: ['人员', '月产量', '月合格率'],
+        header: ['产品名称', '检测数量', '合格率'],
         data: [
           ['张三', '10830', '90%'],
           ['张四', '13500', '92%'],
@@ -208,9 +233,9 @@ export default {
           ['王二', '10567', '91%'],
           ['李四', '15721', '99%'],
         ],
-        evenRowBGC: '#020308',
-        oddRowBGC: '#382B47',
-        headerBGC: '#020308',
+        evenRowBGC: '#0a1338',
+        oddRowBGC: '#360f73',
+        headerBGC: '#19235e',
       },
       // 定义颜色
       colorList: {
@@ -287,31 +312,27 @@ export default {
       cone: {
         data: [
           {
-            name: '周口',
+            name: '牛肉干',
             value: 55,
           },
           {
-            name: '南阳',
+            name: '苹果',
             value: 120,
           },
           {
-            name: '西峡',
+            name: '牛奶',
             value: 71,
           },
           {
-            name: '驻马店',
+            name: '水果干',
             value: 66,
           },
           {
-            name: '新乡',
-            value: 80,
-          },
-          {
-            name: '信阳',
+            name: '水果罐头',
             value: 35,
           },
           {
-            name: '漯河',
+            name: '苹果牛奶',
             value: 15,
           },
         ],
@@ -660,8 +681,8 @@ export default {
         title: {
           text: "物流统计",
           textStyle: {
-            color: "#ffffff",
-            fontSize:30,
+            color: "#008cff",
+            fontSize:20,
             textAlign:'center',
           },
         },
@@ -725,18 +746,14 @@ export default {
       window.onresize = mapChart.resize //如果容器变大小，自适应从新构图
       let option = {
         color: [
-          '#37a2da',
-          '#32c5e9',
           '#9fe6b8',
           '#ffdb5c',
-          '#ff9f7f',
           '#fb7293',
-          '#e7bcf3',
           '#8378ea',
         ],
         tooltip: {
           trigger: 'item',
-          formatter: '{a} <br/>{b} : {c} ({d}%)',
+          formatter: '{a} <br/>{b} : {c}',
         },
         toolbox: {
           show: true,
@@ -745,27 +762,31 @@ export default {
         legend: {
           orient: 'horizontal',
           icon: 'circle',
-          bottom: 0,
-          x: 'center',
-          data: ['data1', 'data2', 'data3', 'data4', 'data5', 'data6'],
+          top:210,
+          // x: 'center',
+          data: ['供应商总数', '产品总数', '用户总数' ,'查询总数'],
           textStyle: {
             color: '#fff',
+            fontSize:18,
           },
         },
         series: [
           {
-            name: '通过率统计',
+            name: '数据统计',
             type: 'pie',
-            radius: [10, 50],
+            radius: [40, 90],
+            label:{
+              normal:{
+                show:false
+              }
+            },
             roseType: 'area',
-            center: ['50%', '40%'],
+            center: ['50%', '38%'],
             data: [
-              { value: 10, name: 'data1' },
-              { value: 5, name: 'data2' },
-              { value: 15, name: 'data3' },
-              { value: 25, name: 'data4' },
-              { value: 20, name: 'data5' },
-              { value: 35, name: 'data6' },
+              { value: 130, name: '查询总数' },
+              { value: 50, name: '供应商总数' },
+              { value: 70, name: '产品总数' },
+              { value: 100, name: '用户总数' },
             ],
           },
         ],
@@ -792,56 +813,60 @@ export default {
           },
         },
         legend: {
-          data: ['已贯通', '计划贯通', '贯通率'],
+          // data: ['已贯通', '计划贯通', '贯通率'],
+          data: ['产品数量'],
           textStyle: {
-            color: '#B4B4B4',
+            color: '#ffffff',
+            fontSize:18,
           },
           top: '0%',
         },
         grid: {
           x: '8%',
-          width: '95%',
+          width: '90%',
           y: '4%',
         },
         xAxis: {
           data: [
-            '市区',
-            '万州',
-            '江北',
-            '南岸',
-            '北碚',
-            '綦南',
-            '长寿',
-            '永川',
-            '璧山',
-            '江津',
-            '城口',
-            '大足',
-            '垫江',
-            '丰都',
-            '奉节',
-            '合川',
-            '江津区',
-            '开州',
-            '南川',
-            '彭水',
-            '黔江',
-            '石柱',
-            '铜梁',
-            '潼南',
-            '巫山',
-            '巫溪',
-            '武隆',
-            '秀山',
-            '酉阳',
-            '云阳',
-            '忠县',
-            '川东',
-            '检修',
+              '河北',
+              '山西',
+              '辽宁',
+              '吉林',
+              '黑龙江',
+              '江苏',
+              '浙江',
+              '安徽',
+              '福建',
+              '江西',
+             ' 山东',
+              '河南',
+              '湖北',
+              '湖南',
+              '广东',
+              '海南',
+              '四川',
+              '贵州',
+              '云南',
+              '陕西',
+              '甘肃',
+              '青海',
+              '台湾',
+              '内蒙古',
+              '广西',
+              '西藏',
+              '宁夏',
+              '新疆',
+              '北京',
+              '天津',
+              '上海',
+              '重庆',
+              '香港',
+              '澳门',
           ],
           axisLine: {
             lineStyle: {
-              color: '#B4B4B4',
+              color: '#ffffff',
+              fontSize:15,
             },
           },
           axisTick: {
@@ -853,10 +878,10 @@ export default {
             splitLine: { show: false },
             axisLine: {
               lineStyle: {
-                color: '#B4B4B4',
+                color: '#ffffff',
+                fontSize:15,
               },
             },
-
             axisLabel: {
               formatter: '{value} ',
             },
@@ -864,9 +889,9 @@ export default {
         ],
         series: [
           {
-            name: '已贯通',
+            name: '产品数量',
             type: 'bar',
-            barWidth: 10,
+            barWidth: 9,
             itemStyle: {
               normal: {
                 barBorderRadius: 5,
@@ -879,31 +904,31 @@ export default {
             data: [
               46, 50, 55, 650, 75, 85, 99, 125, 140, 215, 232, 244, 252, 333,
               46, 50, 55, 65, 75, 85, 99, 225, 140, 215, 85, 99, 125, 140, 215,
-              232, 244, 252, 75,
+              232, 244, 252, 75, 55,
             ],
           },
-          {
-            name: '计划贯通',
-            type: 'bar',
-            barGap: '-100%',
-            barWidth: 10,
-            itemStyle: {
-              normal: {
-                barBorderRadius: 5,
-                color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                  { offset: 0, color: 'rgba(156,107,211,0.8)' },
-                  { offset: 0.2, color: 'rgba(156,107,211,0.5)' },
-                  { offset: 1, color: 'rgba(156,107,211,0.2)' },
-                ]),
-              },
-            },
-            z: -12,
-            data: [
-              180, 207, 240, 283, 328, 360, 398, 447, 484, 504, 560, 626, 595,
-              675, 180, 207, 240, 283, 328, 360, 398, 447, 484, 504, 360, 398,
-              447, 484, 504, 500, 326, 495, 328,
-            ],
-          },
+          // {
+          //   name: '计划贯通',
+          //   type: 'bar',
+          //   barGap: '-100%',
+          //   barWidth: 10,
+          //   itemStyle: {
+          //     normal: {
+          //       barBorderRadius: 5,
+          //       color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          //         { offset: 0, color: 'rgba(156,107,211,0.8)' },
+          //         { offset: 0.2, color: 'rgba(156,107,211,0.5)' },
+          //         { offset: 1, color: 'rgba(156,107,211,0.2)' },
+          //       ]),
+          //     },
+          //   },
+          //   z: -12,
+          //   data: [
+          //     180, 207, 240, 283, 328, 360, 398, 447, 484, 504, 560, 626, 595,
+          //     675, 180, 207, 240, 283, 328, 360, 398, 447, 484, 504, 360, 398,
+          //     447, 484, 504, 500, 326, 495, 328,
+          //   ],
+          // },
         ],
       }
       mapChart.setOption(option) //生成图表
@@ -931,9 +956,9 @@ export default {
           nameLocation: 'end',
           nameGap: 24,
           nameTextStyle: {
-            color: 'rgba(171,99,99,0.5)',
-            fontSize: 15,
-            // fontWeight:'bold',
+            color: '#008cff',
+            fontSize: 20,
+            fontWeight:'bold',
           },
           splitNumber: 4,
           axisLine: {
@@ -954,10 +979,10 @@ export default {
           },
         },
         grid: {
-          left: 50,
+          left: 70,
           right: 10,
           bottom: 25,
-          top: '18%',
+          top: '20%',
         },
         series: [
           {
@@ -969,6 +994,7 @@ export default {
             itemStyle: {
               normal: {
                 color: '#fff',
+                fontSize:20,
               },
             },
             //线的颜色样式
@@ -1166,7 +1192,7 @@ a {
   //顶部中间文字数据可视化系统
   .title_text {
     text-align: center;
-    font-size: 24px;
+    font-size: 35px;
     font-weight: bold;
     margin-top: 14px;
     color: #008cff;
@@ -1174,6 +1200,8 @@ a {
   //时间日期
   .title_time {
     text-align: center;
+    font-weight: bold;
+    font-size: 20px;
   }
   //中国地图
   #china-map {
@@ -1222,23 +1250,23 @@ a {
   }
   //左1模块-玫瑰饼图
   #Rose_diagram {
-    height: 70%;
+    height: 100%;
     width: 55%;
   }
   //左1模块-圆环图
   .left_box1_rose_right {
-    height: 85%;
+    height: 100%;
     width: 55%;
     position: absolute;
     right: 0;
     top: 0;
   }
   //左1模块-文字部分
-  .rose_text {
-    display: inline-block;
-    margin-top: 4%;
-    margin-left: 4%;
-  }
+  //.rose_text {
+  //  display: inline-block;
+  //  margin-top: 4%;
+  //  margin-left: 4%;
+  //}
   // 左1模块-￥符号样式
   .coin {
     font-size: 20px;
@@ -1267,9 +1295,9 @@ a {
   }
   //轮播表格
   .carousel_list {
-    width: 96%;
-    height: 98%;
-    margin-left: 10px;
+    width: 90%;
+    height: 90%;
+    margin-left: 20px;
   }
   //虚线柱状图
   #dotter_bar {
@@ -1279,7 +1307,7 @@ a {
   //锥形图
   .cone_box {
     width: 95%;
-    height: 97%;
+    height: 85%;
     margin-left: 3%;
   }
 }
