@@ -63,6 +63,7 @@ export default {
             return
           }
           request.post("/user/login",this.form ).then(res => {
+            console.log(res)
             if (res.code === 1) {
               this.$message({
                 type: "success",

@@ -36,9 +36,9 @@ export default {
   },data(){
     return{
 
-      identity:'',
+      // identity:'',
       // identity:'普通用户',
-      // identity:'供应商',
+      identity:'供应商',
       searchTimes:0
     }
   }
@@ -47,12 +47,12 @@ export default {
       Toast('您被查询过' + this.searchTimes + '次');
     }
   },created() {
-    let user = JSON.parse(localStorage.getItem('userinfo'))
-    if (user.role === 2){
-      this.identity = '供应商'
-    }else if(user.role === 0){
-      this.identity = '普通用户'
-    }
+    // let user = JSON.parse(localStorage.getItem('userinfo'))
+    // if (user.role === 2){
+    //   this.identity = '供应商'
+    // }else if(user.role === 0){
+    //   this.identity = '普通用户'
+    // }
   }
 }
 </script>
