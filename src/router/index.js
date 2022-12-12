@@ -5,7 +5,6 @@ import InfoView from "../views/InfoView.vue"
 import RegisterView from "@/views/RegisterView";
 import DataScreen from "@/views/DataScreen";
 import UserView from "@/views/UserView";
-import Produce from "@/views/Produce";
 import Detection from "@/views/Detection";
 import Logistics from "@/views/Logistics";
 import AppLoginView from "@/appview/AppLoginView";
@@ -57,13 +56,8 @@ const routes = [
     path: '/Planting',
     name:'Planting',
     component: Planting,
-  }
-  ,{
-    path: '/Produce',
-    name:'Produce',
-    component: Produce,
-  }
-  ,{
+  },
+  {
     path: '/Detection',
     name:'Detection',
     component:Detection,

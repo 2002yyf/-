@@ -92,7 +92,7 @@
               <div class="right_box1">
                 <dv-border-box-12>
                   <dv-decoration-7 style="width: 100%; height: 30px;color: #008cff;font-size: 20px;font-weight: bold"
-                    >检 测 通 过 率</dv-decoration-7
+                    >产 品 检 测 通 过 率</dv-decoration-7
                   >
                   <dv-scroll-ranking-board
                     :config="config1"
@@ -103,16 +103,19 @@
               <!-- 虚线柱状图部分 -->
               <div class="right_box2">
                 <dv-border-box-12 :reverse="true">
-                  <div id="dotter_bar"></div>
+                  <dv-decoration-7 style="width: 100%; height: 30px;color: #008cff;font-size: 20px;font-weight: bold"
+                  >产 品 销 售 排 行 榜</dv-decoration-7
+                  >
+                  <dv-conical-column-chart :config="cone" class="cone_box" />
                 </dv-border-box-12>
               </div>
               <!-- 部分 -->
               <div class="right_box3">
                 <dv-border-box-12 :reverse="true">
                   <dv-decoration-7 style="width: 100%; height: 30px;color: #008cff;font-size: 20px;font-weight: bold"
-                  >产 品 销 售 排 行 榜</dv-decoration-7
+                  >物 流 情 况</dv-decoration-7
                   >
-                  <dv-conical-column-chart :config="cone" class="cone_box" />
+                  <div id="dotter_bar"></div>
                 </dv-border-box-12>
               </div>
             </el-col>
@@ -176,9 +179,6 @@ export default {
             value: 100,
           },
         ],
-        // valueFormatter:{
-        //   value
-        // }
         unit: "%",
       },
       config: {
@@ -220,18 +220,18 @@ export default {
       ],
       //左侧轮播表格配置项
       board_info: {
-        header: ['产品名称', '检测数量', '合格率'],
+        header: ['产品名称', '检测数量', '检测时间'],
         data: [
-          ['张三', '10830', '90%'],
-          ['张四', '13500', '92%'],
-          ['张五', '10350', '97%'],
-          ['张六', '13300', '94%'],
-          ['张七', '12500', '95%'],
-          ['张八', '11500', '96%'],
-          ['张九', '12500', '89%'],
-          ['王六', '10360', '95%'],
-          ['王二', '10567', '91%'],
-          ['李四', '15721', '99%'],
+          ['张三', '10830', '2022-03-07'],
+          ['张四', '13500', '2022-03-07'],
+          ['张五', '10350', '2022-05-07'],
+          ['张六', '13300', '2022-05-16'],
+          ['张七', '12500', '2022-06-08'],
+          ['张八', '11500', '2022-08-07'],
+          ['张九', '12500', '2022-09-17'],
+          ['王六', '10360', '2022-10-11'],
+          ['王二', '10567', '2022-11-01'],
+          ['李四', '15721', '2022-12-13'],
         ],
         evenRowBGC: '#0a1338',
         oddRowBGC: '#360f73',
@@ -803,17 +803,16 @@ export default {
         },
         tooltip: {
           trigger: 'axis',
-          backgroundColor: 'rgba(255,255,255,0.1)',
+          fontSize:15,
           axisPointer: {
-            type: 'shadow',
             label: {
               show: true,
               backgroundColor: '#7B7DDC',
+              fontSize:15,
             },
           },
         },
         legend: {
-          // data: ['已贯通', '计划贯通', '贯通率'],
           data: ['产品数量'],
           textStyle: {
             color: '#ffffff',
@@ -1024,8 +1023,9 @@ export default {
       let dottedBase = +new Date()
       let lineData = []
       let barData = []
-      for (let i = 0; i < 20; i++) {
-        let date = new Date((dottedBase += 3600 * 24 * 1000))
+      let Data = []
+      for (let i=0; i <10; i++) {
+        let date = new Date((dottedBase = (dottedBase+3600 * 24 * 1000))-3600 * 24 * 1000*10)
         category.push(
           [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-')
         )
@@ -1033,13 +1033,14 @@ export default {
         let d = Math.random() * 200
         barData.push(b)
         lineData.push(d + b)
+        Data.push(d+b)
       }
       // option
       let option = {
         tooltip: {
           trigger: 'axis',
           axisPointer: {
-            type: 'shadow',
+            // type: 'shadow',
           },
         },
         grid: {
@@ -1072,7 +1073,7 @@ export default {
         },
         series: [
           {
-            name: 'line',
+            name: '总需物流数量',
             type: 'line',
             smooth: true,
             showAllSymbol: true,
@@ -1081,11 +1082,11 @@ export default {
             data: lineData,
           },
           {
-            name: 'bar',
+            name: '完成物流数量',
             type: 'bar',
-            barWidth: 10,
+            barWidth: 15,
             itemStyle: {
-              borderRadius: 5,
+              borderRadius: 8,
               // color: "#14c8d4",
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                 { offset: 0, color: '#14c8d4' },
@@ -1094,35 +1095,35 @@ export default {
             },
             data: barData,
           },
-          {
-            name: 'line',
-            type: 'bar',
-            barGap: '-100%',
-            barWidth: 10,
-            itemStyle: {
-              // color: "rgba(20,200,212,0.5)",
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: 'rgba(20,200,212,0.5)' },
-                { offset: 0.2, color: 'rgba(20,200,212,0.2)' },
-                { offset: 1, color: 'rgba(20,200,212,0)' },
-              ]),
-            },
-            z: -12,
-            data: lineData,
-          },
-          {
-            name: 'dotted',
-            type: 'pictorialBar',
-            symbol: 'rect',
-            itemStyle: {
-              color: '#0f375f',
-            },
-            symbolRepeat: true,
-            symbolSize: [12, 4],
-            symbolMargin: 1,
-            z: -10,
-            data: lineData,
-          },
+          // {
+          //   name: 'line',
+          //   type: 'bar',
+          //   barGap: '-100%',
+          //   barWidth: 10,
+          //   itemStyle: {
+          //     // color: "rgba(20,200,212,0.5)",
+          //     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          //       { offset: 0, color: 'rgba(20,200,212,0.5)' },
+          //       { offset: 0.2, color: 'rgba(20,200,212,0.2)' },
+          //       { offset: 1, color: 'rgba(20,200,212,0)' },
+          //     ]),
+          //   },
+          //   z: -12,
+          //   data:Data,
+          // },
+          // {
+          //   name: 'dotted',
+          //   type: 'pictorialBar',
+          //   symbol: 'rect',
+          //   itemStyle: {
+          //     color: '#0f375f',
+          //   },
+          //   symbolRepeat: true,
+          //   symbolSize: [12, 4],
+          //   symbolMargin: 1,
+          //   z: -10,
+          //   data: lineData,
+          // },
         ],
       }
       mapChart.setOption(option) //生成图表
@@ -1301,8 +1302,8 @@ a {
   }
   //虚线柱状图
   #dotter_bar {
-    width: 100%;
-    height: 100%;
+    width: 95%;
+    height: 80%;
   }
   //锥形图
   .cone_box {
