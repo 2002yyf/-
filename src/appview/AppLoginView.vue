@@ -50,6 +50,7 @@ export default {
    form:{
      userName:'',
      password:'',
+     role:0
      }
     }
   },
