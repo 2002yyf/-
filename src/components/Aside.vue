@@ -17,7 +17,7 @@
       </el-menu-item>
 
       <el-menu-item index="2"  @click="this.$router.push('/user')">
-        <el-icon><location /></el-icon>
+        <el-icon><Avatar /></el-icon>
         <span  class="span">用户管理</span>
       </el-menu-item>
 

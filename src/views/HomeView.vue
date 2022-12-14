@@ -9,7 +9,7 @@
           </div>
           <div style="width: 180px;height: 90px;float:left;margin-left: 30px;text-align: center">
             <div style="font-family: cursive;font-weight: bold;font-size: 40px;">
-              {{user}}
+              8
             </div>
             <div style="font-weight: bold;margin-top:40px;font-size: 30px">
               普通用户数量
@@ -26,7 +26,7 @@
           </div>
           <div style="width: 180px;height: 90px;float:left;margin-left: 30px;text-align: center">
             <div style="font-family: cursive;font-weight: bold;font-size: 40px;">
-              {{user}}
+              6
             </div>
             <div style="font-weight: bold;margin-top:40px;font-size: 30px">
               产品供方数量
@@ -44,7 +44,7 @@
             </div>
             <div style="width: 180px;height: 90px;float:left;margin-left: 30px;text-align: center">
               <div style="font-family: cursive;font-weight: bold;font-size: 40px;">
-                {{user}}
+                32
               </div>
               <div style="font-weight: bold;margin-top:40px;font-size: 30px">
                 产品种类数目
@@ -62,7 +62,7 @@
           </div>
           <div style="width: 180px;height: 90px;float:left;margin-left: 30px;text-align: center">
             <div style="font-family: cursive;font-weight: bold;font-size: 40px;">
-              {{application}}
+              4
             </div>
             <div style="font-weight: bold;margin-top:40px;font-size: 30px">
               待审批数量
@@ -79,7 +79,7 @@
           </div>
           <div style="width: 180px;height: 90px;float:left;margin-left: 30px;text-align: center">
             <div style="font-family: cursive;font-weight: bold;font-size: 40px;">
-              {{user}}
+              32
             </div>
             <div style="font-weight: bold;margin-top:40px;font-size: 30px">
               上线产品数量
@@ -96,7 +96,7 @@
           </div>
           <div style="width: 180px;height: 90px;float:left;margin-left: 30px;text-align: center">
             <div style="font-family: cursive;font-weight: bold;font-size: 40px;">
-              {{user}}
+              130
             </div>
             <div style="font-weight: bold;margin-top:40px;font-size: 30px">
               用户查询次数

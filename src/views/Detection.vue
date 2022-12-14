@@ -14,8 +14,8 @@
             <div style="font-size: 17px;font-weight: bold;color: #0b5b33;font-family:cursive">检测合格：
             </div>
             <select class="input" style="width:120px"  v-model="formInline.status">
-              <option class="input" label="检测合格" value=1></option>
-              <option class="input" label="检测不合格" value=0></option>
+              <option class="input" label="检测通过" value=1></option>
+              <option class="input" label="检测不通过" value=0></option>
             </select>
           </el-form-item>
           <el-form-item>

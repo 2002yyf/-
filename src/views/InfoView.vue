@@ -76,17 +76,17 @@
             </template>
           </el-table-column>
 
-          <el-table-column label="作物组成" width="220">
-            <template #default="scope">
-                <el-icon><timer /></el-icon>
-                <span>{{ scope.row.crops.name}}</span>
-            </template>
-          </el-table-column>
-<!--          <el-table-column label="图片" width="150">-->
+<!--          <el-table-column label="作物组成" width="220">-->
 <!--            <template #default="scope">-->
-<!--              <img  :src="scope.row.image" style="width: 70px;height: 70px">-->
+<!--                <el-icon><timer /></el-icon>-->
+<!--                <span>{{ scope.row.crops.name}}</span>-->
 <!--            </template>-->
 <!--          </el-table-column>-->
+          <el-table-column label="图片" width="220">
+            <template #default="scope">
+              <img  :src="scope.row.image" style="width: 70px;height: 70px">
+            </template>
+          </el-table-column>
         </el-table>
       </div>
       <div style="margin-top:20px; margin-left: 400px;margin-bottom: 20px">
