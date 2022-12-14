@@ -49,8 +49,7 @@ export default {
     return {
    form:{
      userName:'',
-     password:'',
-     role:0
+     password:''
      }
     }
   },
@@ -70,7 +69,7 @@ export default {
                 type: "success",
                 message: "登录成功"
               })
-              // sessionStorage.setItem("user", JSON.stringify(res.data))  // 缓存用户信息
+              sessionStorage.setItem("user", JSON.stringify(res.data))  // 缓存用户信息
               // this.setToken({token: res.data.data.token});
               this.$router.push("/appHome")  //登录成功之后进行页面的跳转，跳转到主页
             }

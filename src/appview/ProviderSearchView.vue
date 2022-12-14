@@ -10,12 +10,12 @@
 
     >
       <template #button>
-        <van-button size="small" type="primary">查询</van-button>
+        <van-button size="small" type="primary" @click="search">查询</van-button>
       </template>
     </van-field>
   </van-cell-group>
   <el-card v-for="(item,i) in results" class="result" shadow="hover" @click="show=true">
-    <span>{{item.name}}</span>
+    <span>{{item.userName}}</span>
 
   </el-card>
 
@@ -34,6 +34,7 @@
 
 <script>
 import back from "@/components/back";
+import request from "@/utils/request";
 export default {
 
   name: "ProviderSearchView",
@@ -44,13 +45,38 @@ export default {
     return{
       show:false,
       providerID:'',
-      results:[
-        {
-          name:'开心农场'
-        },{
-          name: '快乐农场'
+      results:[],
+    }
+  },mounted() {
+    request.get("/user/page",{
+      params:{
+        role:2,
+        page:0,
+        pageSize:100
+      }
+    }).then(res => {
+      // console.log(res.data.records)
+      for(var i in res.data.records){
+        this.results.push(res.data.records[i])
+      }
+    })
+  },methods:{
+    search(){
+      request.get("/user/page",{
+        params:{
+          role:2,
+          page:0,
+          pageSize:100,
+          name:this.providerID
         }
-      ],
+      }).then(res => {
+        // console.log(res.data)
+        this.results = []
+        for (var i in res.data.records){
+          this.results.push(res.data.records[i])
+        }
+
+      })
     }
   }
 }

@@ -2,7 +2,7 @@
 
   <div class="identity">
     <el-card class="card1" shadow="always">
-      <span style="display: block;font-size: 30px;margin-top: 20px;padding-left: 20px">张三</span>
+      <span style="display: block;font-size: 30px;margin-top: 20px;padding-left: 20px">{{name}}</span>
       <span style="display:block;margin-top: 20px;padding-left: 20px">{{identity}}</span>
     </el-card>
   </div>
@@ -38,8 +38,9 @@ export default {
 
       // identity:'',
       // identity:'普通用户',
-      identity:'供应商',
-      searchTimes:0
+      identity:'',
+      searchTimes:0,
+      name:''
     }
   }
   ,methods:{
@@ -47,12 +48,14 @@ export default {
       Toast('您被查询过' + this.searchTimes + '次');
     }
   },created() {
-    // let user = JSON.parse(localStorage.getItem('userinfo'))
-    // if (user.role === 2){
-    //   this.identity = '供应商'
-    // }else if(user.role === 0){
-    //   this.identity = '普通用户'
-    // }
+    let user = JSON.parse(sessionStorage.getItem('user'))
+    // console.log(user)
+    if (user.role === 2){
+      this.identity = '供应商'
+    }else if(user.role === 0){
+      this.identity = '普通用户'
+    }
+    this.name = user.userName
   }
 }
 </script>

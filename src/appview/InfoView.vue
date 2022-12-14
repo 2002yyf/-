@@ -8,7 +8,7 @@
       height="10rem"
       :src=src
   />
-    <span style="display:block;font-size: 30px;text-align: center;padding-top: 10px">张三</span>
+    <span style="display:block;font-size: 30px;text-align: center;padding-top: 10px">{{name}}</span>
   </div>
   <div style="height: 400px">
     <van-cell-group style="top: 40px">
@@ -27,12 +27,16 @@ export default {
   name: "InfoView",
   components:{
     AppBottom
-  },mounted() {
+  },created() {
+    let user = JSON.parse(sessionStorage.getItem('user'))
+    console.log(user)
+    this.name = user.userName
   },data(){
     return{
-      src:''
+      src:'',
+      name:''
     }
-  }
+  },
 }
 </script>
 

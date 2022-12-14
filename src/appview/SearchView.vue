@@ -64,72 +64,83 @@
 <script>
 import { pinyin } from 'pinyin-pro';
 import AppBottom from "@/components/AppBottom";
+import request from "@/utils/request";
 export default {
   name: "SearchView",
 
   components:{
     AppBottom
   },mounted() {
-    for(let i in this.products){
-      let firstLetter = pinyin(this.products[i],{toneType:"none"})[0].toUpperCase()
-      if (firstLetter === 'Q') {
-        this.productQ.push(this.products[i])
-      } else if (firstLetter === 'W') {
-        this.productW.push(this.products[i])
-      } else if (firstLetter === 'E') {
-        this.productE.push(this.products[i])
-      } else if (firstLetter === 'R') {
-        this.productR.push(this.products[i])
-      } else if (firstLetter === 'T') {
-        this.productT.push(this.products[i])
-      } else if (firstLetter === 'Y') {
-        this.productY.push(this.products[i])
-      } else if (firstLetter === 'U') {
-        this.productU.push(this.products[i])
-      } else if (firstLetter === 'I') {
-        this.productI.push(this.products[i])
-      } else if (firstLetter === 'O') {
-        this.productO.push(this.products[i])
-      } else if (firstLetter === 'P') {
-        this.productP.push(this.products[i])
-      } else if (firstLetter === 'A') {
-        this.productA.push(this.products[i])
-      } else if (firstLetter === 'S') {
-        this.productS.push(this.products[i])
-      } else if (firstLetter === 'D') {
-        this.productD.push(this.products[i])
-      } else if (firstLetter === 'F') {
-        this.productF.push(this.products[i])
-      } else if (firstLetter === 'G') {
-        this.productG.push(this.products[i])
-      } else if (firstLetter === 'H') {
-        this.productH.push(this.products[i])
-      } else if (firstLetter === 'J') {
-        this.productJ.push(this.products[i])
-      } else if (firstLetter === 'K') {
-        this.productK.push(this.products[i])
-      } else if (firstLetter === 'L') {
-        this.productL.push(this.products[i])
-      } else if (firstLetter === 'Z') {
-        this.productZ.push(this.products[i])
-      } else if (firstLetter === 'X') {
-        this.productX.push(this.products[i])
-      } else if (firstLetter === 'C') {
-        this.productC.push(this.products[i])
-      } else if (firstLetter === 'V') {
-        this.productV.push(this.products[i])
-      } else if (firstLetter === 'B') {
-        this.productB.push(this.products[i])
-      } else if (firstLetter === 'N') {
-        this.productN.push(this.products[i])
-      } else if (firstLetter === 'M') {
-        this.productM.push(this.products[i])
+    request.get("/crop/all").then(res =>{
+      for(let i in res.data){
+        // console.log(res.data[i].name)
+        this.products.push(res.data[i].name)
       }
-    }
+      // console.log(this.products[0])
+      for(let i in this.products){
+        // console.log(this.products[i])
+        let firstLetter = pinyin(this.products[i],{toneType:"none"})[0].toUpperCase()
+        if (firstLetter === 'Q') {
+          this.productQ.push(this.products[i])
+        } else if (firstLetter === 'W') {
+          this.productW.push(this.products[i])
+        } else if (firstLetter === 'E') {
+          this.productE.push(this.products[i])
+        } else if (firstLetter === 'R') {
+          this.productR.push(this.products[i])
+        } else if (firstLetter === 'T') {
+          this.productT.push(this.products[i])
+        } else if (firstLetter === 'Y') {
+          this.productY.push(this.products[i])
+        } else if (firstLetter === 'U') {
+          this.productU.push(this.products[i])
+        } else if (firstLetter === 'I') {
+          this.productI.push(this.products[i])
+        } else if (firstLetter === 'O') {
+          this.productO.push(this.products[i])
+        } else if (firstLetter === 'P') {
+          this.productP.push(this.products[i])
+        } else if (firstLetter === 'A') {
+          this.productA.push(this.products[i])
+        } else if (firstLetter === 'S') {
+          this.productS.push(this.products[i])
+        } else if (firstLetter === 'D') {
+          this.productD.push(this.products[i])
+        } else if (firstLetter === 'F') {
+          this.productF.push(this.products[i])
+        } else if (firstLetter === 'G') {
+          this.productG.push(this.products[i])
+        } else if (firstLetter === 'H') {
+          this.productH.push(this.products[i])
+        } else if (firstLetter === 'J') {
+          this.productJ.push(this.products[i])
+        } else if (firstLetter === 'K') {
+          this.productK.push(this.products[i])
+        } else if (firstLetter === 'L') {
+          this.productL.push(this.products[i])
+        } else if (firstLetter === 'Z') {
+          this.productZ.push(this.products[i])
+        } else if (firstLetter === 'X') {
+          this.productX.push(this.products[i])
+        } else if (firstLetter === 'C') {
+          this.productC.push(this.products[i])
+        } else if (firstLetter === 'V') {
+          this.productV.push(this.products[i])
+        } else if (firstLetter === 'B') {
+          this.productB.push(this.products[i])
+        } else if (firstLetter === 'N') {
+          this.productN.push(this.products[i])
+        } else if (firstLetter === 'M') {
+          this.productM.push(this.products[i])
+        }
+      }
+      this.$refs.bar.scrollTo('N')
+    })
+
   },data(){
     return{
       product:'',
-      products:['西瓜','苹果','梨','香蕉'],
+      products:[],
       productA:[],
       productQ:[],
       productW:[],
