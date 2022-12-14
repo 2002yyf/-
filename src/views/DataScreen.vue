@@ -151,32 +151,32 @@ export default {
       config1: {
         data: [
           {
-            name: '张三',
+            name: '牛肉干',
             value:99,
           },
           {
-            name: '张一',
+            name: '苹果牛奶',
             value:94,
           },
           {
-            name: '张二',
+            name: '大米',
             value: 91,
           },
           {
-            name: '张五',
+            name: '老陈醋',
             value: 87,
           },
           {
-            name: '张六',
-            value: 74,
+            name: '西蓝花',
+            value: 84,
           },
           {
-            name: '张七',
-            value: 74,
+            name: '毛尖',
+            value: 88,
           },
           {
-            name: '张三',
-            value: 100,
+            name: '青蟹',
+            value: 89,
           },
         ],
         unit: "%",
@@ -184,12 +184,12 @@ export default {
       config: {
         data: [
           {
-            name: '审核通过率',
-            value: 120,
+            name: '审核通过数',
+            value: 6,
           },
           {
             name: '待审核数',
-            value: 55,
+            value: 2,
           },
         ],
         color:['#89d798', '#e790cc'],
@@ -222,16 +222,16 @@ export default {
       board_info: {
         header: ['产品名称', '检测数量', '检测时间'],
         data: [
-          ['张三', '10830', '2022-03-07'],
-          ['张四', '13500', '2022-03-07'],
-          ['张五', '10350', '2022-05-07'],
-          ['张六', '13300', '2022-05-16'],
-          ['张七', '12500', '2022-06-08'],
-          ['张八', '11500', '2022-08-07'],
-          ['张九', '12500', '2022-09-17'],
-          ['王六', '10360', '2022-10-11'],
-          ['王二', '10567', '2022-11-01'],
-          ['李四', '15721', '2022-12-13'],
+          ['牛肉干 ', '10830', '2022-03-07'],
+          ['苹果牛奶', '13500', '2022-03-07'],
+          ['原阳大米', '10350', '2022-05-07'],
+          ['老陈醋', '13300', '2022-05-16'],
+          ['莱阳梨 ', '12500', '2022-06-08'],
+          ['猕猴桃', '11500', '2022-08-07'],
+          ['西兰花', '12500', '2022-09-17'],
+          ['青蟹', '10360', '2022-10-11'],
+          ['龙井', '10567', '2022-11-01'],
+          ['毛尖', '15721', '2022-12-13'],
         ],
         evenRowBGC: '#0a1338',
         oddRowBGC: '#360f73',
@@ -313,26 +313,26 @@ export default {
         data: [
           {
             name: '牛肉干',
-            value: 55,
-          },
-          {
-            name: '苹果',
             value: 120,
           },
           {
-            name: '牛奶',
+            name: '苹果牛奶',
+            value: 55,
+          },
+          {
+            name: '西蓝花',
             value: 71,
           },
           {
-            name: '水果干',
+            name: '猕猴桃',
             value: 66,
           },
           {
-            name: '水果罐头',
+            name: '龙井',
             value: 35,
           },
           {
-            name: '苹果牛奶',
+            name: '毛尖',
             value: 15,
           },
         ],
@@ -426,124 +426,117 @@ export default {
       //后台给的数据模拟
       let lineData = [
         {
-          val: 32, //数据
-          blat: [86.9023, 41.148], //发射点
-          elon: [87.8695, 31.6846], //接收点
-          bcitysim: '新疆', //发射省的名字
-          ecitysim: '西藏', //接收省的名字
+          val: 1, //数据
+          blat: [110.5977, 41.3408], //发射点
+          elon: [120.498, 29.0918], //接收点
+          bcitysim: '内蒙古', //发射省的名字
+          ecitysim: '浙江', //接收省的名字
         },
         {
-          val: 31,
+          val: 1,
           blat: [87.8695, 31.6846],
-          elon: [95.2402, 35.4199],
+          elon: [120.498, 29.0918],
           bcitysim: '西藏',
-          ecitysim: '青海',
+          ecitysim: '浙江',
         },
         {
-          val: 33,
+          val: 1,
           blat: [86.9023, 41.148],
-          elon: [95.2402, 35.4199],
-          bcitysim: '新疆',
-          ecitysim: '青海',
-        },
-        {
-          val: 33,
-          blat: [116.4551, 40.2539],
           elon: [119.8586, 32.915],
-          bcitysim: '北京',
+          bcitysim: '新疆',
           ecitysim: '江苏',
         },
-        {
-          val: 33,
-          blat: [120.8254, 23.5986],
-          elon: [109.9512, 19.2041],
-          bcitysim: '台湾',
-          ecitysim: '海南',
-        },
-        {
-          val: 33,
-          blat: [120.498, 29.0918],
-          elon: [115.7156, 27.99],
-          bcitysim: '浙江',
-          ecitysim: '江西',
-        },
-        {
-          val: 33,
-          blat: [117.2461, 31.0361],
-          elon: [119.8586, 32.915],
-          bcitysim: '安徽',
-          ecitysim: '江苏',
-        },
-        {
-          val: 33,
-          blat: [117.2461, 31.0361],
-          elon: [105.9961, 37.1096],
-          bcitysim: '安徽',
-          ecitysim: '宁夏',
-        },
-        {
-          val: 33,
-          blat: [117.2461, 31.0361],
-          elon: [107.7539, 29.8904],
-          bcitysim: '安徽',
-          ecitysim: '重庆',
-        },
-        {
-          val: 33,
-          blat: [117.2461, 31.0361],
-          elon: [123.0438, 41.0889],
-          bcitysim: '安徽',
-          ecitysim: '辽宁',
-        },
-        {
-          val: 33,
-          blat: [119.8586, 32.915],
-          elon: [102.7129, 38.166],
-          bcitysim: '江苏',
-          ecitysim: '甘肃',
-        },
-        {
-          val: 33,
-          blat: [119.8586, 32.915],
-          elon: [128.1445, 46.7156],
-          bcitysim: '江苏',
-          ecitysim: '黑龙江',
-        },
-        {
-          val: 33,
-          blat: [119.8586, 32.915],
-          elon: [110.5977, 41.3408],
-          bcitysim: '江苏',
-          ecitysim: '内蒙古',
-        },
-        {
-          val: 33,
-          blat: [119.8586, 32.915],
-          elon: [101.0652, 24.6807],
-          bcitysim: '江苏',
-          ecitysim: '云南',
-        },
-        {
-          val: 33,
-          blat: [119.8586, 32.915],
-          elon: [86.9023, 41.148],
-          bcitysim: '江苏',
-          ecitysim: '新疆',
-        },
-        {
-          val: 33,
-          blat: [86.9023, 41.148],
-          elon: [110.5977, 41.3408],
-          bcitysim: '新疆',
-          ecitysim: '内蒙古',
-        },
-        {
-          val: 33,
-          blat: [86.9023, 41.148],
-          elon: [102.9199, 30.1904],
-          bcitysim: '新疆',
-          ecitysim: '四川',
-        },
+        // {
+        //   val: 33,
+        //   blat: [120.8254, 23.5986],
+        //   elon: [109.9512, 19.2041],
+        //   bcitysim: '台湾',
+        //   ecitysim: '海南',
+        // },
+        // {
+        //   val: 33,
+        //   blat: [120.498, 29.0918],
+        //   elon: [115.7156, 27.99],
+        //   bcitysim: '浙江',
+        //   ecitysim: '江西',
+        // },
+        // {
+        //   val: 33,
+        //   blat: [117.2461, 31.0361],
+        //   elon: [119.8586, 32.915],
+        //   bcitysim: '安徽',
+        //   ecitysim: '江苏',
+        // },
+        // {
+        //   val: 33,
+        //   blat: [117.2461, 31.0361],
+        //   elon: [105.9961, 37.1096],
+        //   bcitysim: '安徽',
+        //   ecitysim: '宁夏',
+        // },
+        // {
+        //   val: 33,
+        //   blat: [117.2461, 31.0361],
+        //   elon: [107.7539, 29.8904],
+        //   bcitysim: '安徽',
+        //   ecitysim: '重庆',
+        // },
+        // {
+        //   val: 33,
+        //   blat: [117.2461, 31.0361],
+        //   elon: [123.0438, 41.0889],
+        //   bcitysim: '安徽',
+        //   ecitysim: '辽宁',
+        // },
+        // {
+        //   val: 33,
+        //   blat: [119.8586, 32.915],
+        //   elon: [102.7129, 38.166],
+        //   bcitysim: '江苏',
+        //   ecitysim: '甘肃',
+        // },
+        // {
+        //   val: 33,
+        //   blat: [119.8586, 32.915],
+        //   elon: [128.1445, 46.7156],
+        //   bcitysim: '江苏',
+        //   ecitysim: '黑龙江',
+        // },
+        // {
+        //   val: 33,
+        //   blat: [119.8586, 32.915],
+        //   elon: [110.5977, 41.3408],
+        //   bcitysim: '江苏',
+        //   ecitysim: '内蒙古',
+        // },
+        // {
+        //   val: 33,
+        //   blat: [119.8586, 32.915],
+        //   elon: [101.0652, 24.6807],
+        //   bcitysim: '江苏',
+        //   ecitysim: '云南',
+        // },
+        // {
+        //   val: 33,
+        //   blat: [119.8586, 32.915],
+        //   elon: [86.9023, 41.148],
+        //   bcitysim: '江苏',
+        //   ecitysim: '新疆',
+        // },
+        // {
+        //   val: 33,
+        //   blat: [86.9023, 41.148],
+        //   elon: [110.5977, 41.3408],
+        //   bcitysim: '新疆',
+        //   ecitysim: '内蒙古',
+        // },
+        // {
+        //   val: 33,
+        //   blat: [86.9023, 41.148],
+        //   elon: [102.9199, 30.1904],
+        //   bcitysim: '新疆',
+        //   ecitysim: '四川',
+        // },
       ]
       //循环拿到处理好的数据
       for (var i = 0; i < lineData.length; i++) {
@@ -783,10 +776,10 @@ export default {
             roseType: 'area',
             center: ['50%', '38%'],
             data: [
-              { value: 130, name: '查询总数' },
-              { value: 50, name: '供应商总数' },
-              { value: 70, name: '产品总数' },
-              { value: 100, name: '用户总数' },
+              { value: 30, name: '查询总数' },
+              { value: 6, name: '供应商总数' },
+              { value: 32, name: '产品总数' },
+              { value: 14, name: '用户总数' },
             ],
           },
         ],
@@ -901,9 +894,9 @@ export default {
               },
             },
             data: [
-              46, 50, 55, 650, 75, 85, 99, 125, 140, 215, 232, 244, 252, 333,
-              46, 50, 55, 65, 75, 85, 99, 225, 140, 215, 85, 99, 125, 140, 215,
-              232, 244, 252, 75, 55,
+              4, 5, 5, 6, 7, 1, 9, 2, 8, 4, 2, 3, 6, 8,
+              6, 1, 5, 6, 7, 8, 9, 5, 1, 2, 5, 9, 1, 1, 5,
+              3, 2, 2, 5, 1,
             ],
           },
           // {
@@ -938,10 +931,18 @@ export default {
         document.getElementById('line_center_diagram')
       ) //图表初始化，china-map是绑定的元素
       window.onresize = mapChart.resize //如果容器变大小，自适应从新构图
+      // let category = []
+      // let dottedBase = +new Date()
+      // for (let i=0; i <7; i++) {
+      //   let date = new Date((dottedBase = (dottedBase+3600 * 24 * 1000))-3600 * 24 * 1000*10)
+      //   category.push(
+      //       [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-')
+      //   )
       let option = {
         xAxis: {
           type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          data: ['12-8', '12-9', '12-10', '12-11', '12-12', '12-13', '12-14'],
+          // data:category,
           position: 'bottom',
           axisLine: true,
           axisLabel: {
@@ -985,7 +986,7 @@ export default {
         },
         series: [
           {
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            data: [82, 93, 90, 93, 120, 130, 132],
             type: 'line',
             smooth: true,
             symbol: 'emptyCircle',
@@ -1029,11 +1030,13 @@ export default {
         category.push(
           [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-')
         )
-        let b = Math.random() * 200
-        let d = Math.random() * 200
-        barData.push(b)
-        lineData.push(d + b)
-        Data.push(d+b)
+        // let b = [3,5,7,4,5,8,9]
+        // let d = [0,4,4,4,3,2,1]
+        barData = [3,5,7,4,5,8,9,4,2,3]
+        lineData = [0,4,4,4,3,2,1,2,1,0]
+        // barData.push(b)
+        // lineData.push(d + b)
+        // Data.push(d+b)
       }
       // option
       let option = {
@@ -1073,7 +1076,7 @@ export default {
         },
         series: [
           {
-            name: '总需物流数量',
+            name: '完成的物流数量',
             type: 'line',
             smooth: true,
             showAllSymbol: true,
@@ -1082,7 +1085,7 @@ export default {
             data: lineData,
           },
           {
-            name: '完成物流数量',
+            name: '总需物流数量',
             type: 'bar',
             barWidth: 15,
             itemStyle: {
